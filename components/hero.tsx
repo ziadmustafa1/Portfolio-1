@@ -91,7 +91,9 @@ export function Hero() {
                           priority
                           quality={90}
                           onError={() => {
-                            const img = document.querySelector('img[alt="Ziad Mostafa"]') as HTMLImageElement;
+                            const img = document.querySelector(
+                              'img[alt="Ziad Mostafa"]',
+                            ) as HTMLImageElement;
                             if (img) {
                               img.src = '/placeholder.svg';
                             }
