@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -116,18 +116,25 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     scroll-behavior: smooth;
     font-family: var(--font-inter), system-ui, sans-serif;
   }
-  
+
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-poppins), system-ui, sans-serif;
   }
 }
@@ -165,17 +172,30 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(10px); }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
 
 /* Fix overflow issues */
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100%;
   position: relative;
@@ -198,19 +218,31 @@ section {
 /* Space background */
 .space-bg {
   background-color: #0c0c1d;
-  background-image: 
-    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
-    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
-    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px);
-  background-size: 550px 550px, 350px 350px, 250px 250px;
-  background-position: 0 0, 40px 60px, 130px 270px;
+  background-image:
+    radial-gradient(white, rgba(255, 255, 255, 0.2) 2px, transparent 10px),
+    radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 5px),
+    radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 10px);
+  background-size:
+    550px 550px,
+    350px 350px,
+    250px 250px;
+  background-position:
+    0 0,
+    40px 60px,
+    130px 270px;
 }
 
 /* Animations */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .animate-float {
@@ -218,9 +250,15 @@ section {
 }
 
 @keyframes pulse-glow {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 
 .animate-pulse-glow {
@@ -233,7 +271,7 @@ section {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   /* Reduce number of particles on mobile */
   .space-particles-mobile {
     opacity: 0.5;

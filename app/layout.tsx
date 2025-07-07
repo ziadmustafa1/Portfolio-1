@@ -1,24 +1,24 @@
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/header";
-import Script from "next/script";
-import { defaultMetadata, structuredData } from "./seo-config";
+import type { Metadata } from 'next';
+import { Inter, Poppins } from 'next/font/google';
+import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
+import { Header } from '@/components/header';
+import Script from 'next/script';
+import { defaultMetadata, structuredData } from './seo-config';
 
 // Load fonts with optimized preload strategy
-const inter = Inter({ 
-  subsets: ["latin"], 
-  variable: "--font-inter",
-  display: "swap",
-  preload: true
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  preload: true,
 });
-const poppins = Poppins({ 
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  display: "swap",
-  preload: true
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = defaultMetadata;
@@ -29,12 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning className={`${inter.variable} ${poppins.variable}`}>
+    <html
+      lang="en"
+      dir="ltr"
+      suppressHydrationWarning
+      className={`${inter.variable} ${poppins.variable}`}
+    >
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Preload critical assets */}
         <link rel="preload" as="image" href="/image.png" />
-        
+
         {/* Add hreflang tags for language/region targeting */}
         <link rel="alternate" href="https://zeyad-portfolio.vercel.app" hrefLang="en" />
         <link rel="alternate" href="https://zeyad-portfolio.vercel.app" hrefLang="ar" />
@@ -48,9 +53,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
         </ThemeProvider>
 
         {/* Structured Data */}
@@ -61,8 +64,8 @@ export default function RootLayout({
         />
 
         {/* Defer non-critical scripts */}
-        <Script 
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX" 
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">

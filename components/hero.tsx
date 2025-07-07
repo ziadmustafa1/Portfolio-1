@@ -1,45 +1,48 @@
-"use client";
+'use client';
 
-import { LazyMotion, domAnimation, m } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import { OptimizedImage } from "@/components/ui/optimized-image";
+import { LazyMotion, domAnimation, m } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 // Dynamically import icons with loading state
 const DynamicIcons = {
-  Github: dynamic(() => import("lucide-react").then(mod => mod.Github), { 
+  Github: dynamic(() => import('lucide-react').then((mod) => mod.Github), {
     ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
   }),
-  Linkedin: dynamic(() => import("lucide-react").then(mod => mod.Linkedin), { 
+  Linkedin: dynamic(() => import('lucide-react').then((mod) => mod.Linkedin), {
     ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
   }),
-  Download: dynamic(() => import("lucide-react").then(mod => mod.Download), { 
+  Download: dynamic(() => import('lucide-react').then((mod) => mod.Download), {
     ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
   }),
-  Send: dynamic(() => import("lucide-react").then(mod => mod.Send), { 
+  Send: dynamic(() => import('lucide-react').then((mod) => mod.Send), {
     ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
   }),
-  Mail: dynamic(() => import("lucide-react").then(mod => mod.Mail), {
+  Mail: dynamic(() => import('lucide-react').then((mod) => mod.Mail), {
     ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
   }),
-  MapPin: dynamic(() => import("lucide-react").then(mod => mod.MapPin), {
+  MapPin: dynamic(() => import('lucide-react').then((mod) => mod.MapPin), {
     ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
-  })
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
+  }),
 };
 
 // Separate background animations into a dynamic component
-const BackgroundAnimations = dynamic(() => import("./background-animations").then(mod => mod.BackgroundAnimations), {
-  ssr: false,
-  loading: () => null
-});
+const BackgroundAnimations = dynamic(
+  () => import('./background-animations').then((mod) => mod.BackgroundAnimations),
+  {
+    ssr: false,
+    loading: () => null,
+  },
+);
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -98,7 +101,7 @@ export function Hero() {
                 <div className="md:ml-44">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="text-center md:text-left">
-                      <m.h1 
+                      <m.h1
                         className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -106,7 +109,7 @@ export function Hero() {
                       >
                         Ziad Mostafa
                       </m.h1>
-                      <m.p 
+                      <m.p
                         className="text-slate-600 dark:text-slate-400 mt-1"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -114,7 +117,7 @@ export function Hero() {
                       >
                         Front-End Developer
                       </m.p>
-                      <m.div 
+                      <m.div
                         className="flex items-center justify-center md:justify-start gap-2 mt-2 text-sm text-slate-500 dark:text-slate-400"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -126,13 +129,13 @@ export function Hero() {
                     </div>
 
                     {/* Action Buttons */}
-                    <m.div 
+                    <m.div
                       className="flex flex-wrap justify-center md:justify-end gap-3"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 }}
                     >
-                      <Button 
+                      <Button
                         asChild
                         size="lg"
                         className="shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-500/10 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
@@ -142,7 +145,7 @@ export function Hero() {
                           Contact Me
                         </Link>
                       </Button>
-                      <Button 
+                      <Button
                         variant="outline"
                         size="lg"
                         asChild
@@ -157,7 +160,7 @@ export function Hero() {
                   </div>
 
                   {/* Stats Section */}
-                  <m.div 
+                  <m.div
                     className="grid grid-cols-3 gap-4 mt-6 py-4 border-t border-b border-slate-200 dark:border-slate-800"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -168,17 +171,21 @@ export function Hero() {
                       <div className="text-sm text-slate-600 dark:text-slate-400">Projects</div>
                     </div>
                     <div className="text-center border-x border-slate-200 dark:border-slate-800">
-                      <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">2+</div>
+                      <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                        2+
+                      </div>
                       <div className="text-sm text-slate-600 dark:text-slate-400">Years</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">20+</div>
+                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                        20+
+                      </div>
                       <div className="text-sm text-slate-600 dark:text-slate-400">Skills</div>
                     </div>
                   </m.div>
 
                   {/* Social Links */}
-                  <m.div 
+                  <m.div
                     className="flex justify-center md:justify-start gap-3 mt-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

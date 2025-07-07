@@ -1,31 +1,35 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
-import { useState, useEffect } from "react";
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Home } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function NotFound() {
   const [mounted, setMounted] = useState(false);
-  const [backgroundElements, setBackgroundElements] = useState<Array<{
-    width: number;
-    height: number;
-    left: string;
-    top: string;
-    duration: number;
-  }>>([]);
+  const [backgroundElements, setBackgroundElements] = useState<
+    Array<{
+      width: number;
+      height: number;
+      left: string;
+      top: string;
+      duration: number;
+    }>
+  >([]);
 
   // Generate background elements only on the client side
   useEffect(() => {
-    const elements = Array(6).fill(0).map(() => ({
-      width: Math.random() * 200 + 50,
-      height: Math.random() * 200 + 50,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      duration: Math.random() * 5 + 5
-    }));
-    
+    const elements = Array(6)
+      .fill(0)
+      .map(() => ({
+        width: Math.random() * 200 + 50,
+        height: Math.random() * 200 + 50,
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        duration: Math.random() * 5 + 5,
+      }));
+
     setBackgroundElements(elements);
     setMounted(true);
   }, []);
@@ -39,31 +43,27 @@ export default function NotFound() {
           transition={{ duration: 0.5 }}
           className="space-y-2"
         >
-          <motion.h1 
+          <motion.h1
             className="text-8xl font-extrabold text-blue-600 dark:text-blue-500"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ 
-              type: "spring",
+            transition={{
+              type: 'spring',
               stiffness: 200,
               damping: 15,
-              delay: 0.2
+              delay: 0.2,
             }}
           >
             404
           </motion.h1>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
             <h2 className="text-2xl font-bold tracking-tight mb-4">Page not found</h2>
             <p className="text-muted-foreground mb-8">
               The page you&apos;re looking for doesn&apos;t exist or has been moved.
             </p>
           </motion.div>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,33 +75,34 @@ export default function NotFound() {
             </Link>
           </Button>
         </motion.div>
-        
+
         {/* Animated background elements - only rendered client-side */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          {mounted && backgroundElements.map((element, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-blue-500/10 dark:bg-blue-500/5"
-              style={{
-                width: element.width,
-                height: element.height,
-                left: element.left,
-                top: element.top,
-              }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ 
-                scale: [1, 1.1, 1],
-                opacity: [0.7, 0.9, 0.7],
-              }}
-              transition={{
-                duration: element.duration,
-                repeat: Infinity,
-                delay: i * 0.5,
-              }}
-            />
-          ))}
+          {mounted &&
+            backgroundElements.map((element, i) => (
+              <motion.div
+                key={i}
+                className="absolute rounded-full bg-blue-500/10 dark:bg-blue-500/5"
+                style={{
+                  width: element.width,
+                  height: element.height,
+                  left: element.left,
+                  top: element.top,
+                }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.7, 0.9, 0.7],
+                }}
+                transition={{
+                  duration: element.duration,
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                }}
+              />
+            ))}
         </div>
       </div>
     </div>
   );
-} 
+}

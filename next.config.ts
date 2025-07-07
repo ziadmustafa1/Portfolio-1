@@ -2,11 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ['avatars.githubusercontent.com'],
   },
   experimental: {
-    optimizeCss: true
-  }
+    optimizeCss: true,
+  },
 };
 
 export default nextConfig;
