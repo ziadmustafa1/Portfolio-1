@@ -1,8 +1,22 @@
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
-import { Skills } from "@/components/skills";
-import { Projects } from "@/components/projects";
-import { Contact } from "@/components/contact";
+import dynamic from "next/dynamic";
+
+// Dynamically import non-critical components
+const Skills = dynamic(() => import("@/components/skills").then(mod => ({ default: mod.Skills })), {
+  ssr: true,
+  loading: () => <div className="w-full h-[50vh] flex justify-center items-center bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950" />
+});
+
+const Projects = dynamic(() => import("@/components/projects").then(mod => ({ default: mod.Projects })), {
+  ssr: true,
+  loading: () => <div className="w-full h-[50vh] flex justify-center items-center bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950" />
+});
+
+const Contact = dynamic(() => import("@/components/contact").then(mod => ({ default: mod.Contact })), {
+  ssr: true,
+  loading: () => <div className="w-full h-[40vh] flex justify-center items-center bg-slate-50 dark:bg-slate-950" />
+});
 
 export default function Home() {
   return (

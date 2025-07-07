@@ -1,256 +1,245 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Download, Send } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { OptimizedImage } from "@/components/ui/optimized-image";
+
+// Dynamically import icons with loading state
+const DynamicIcons = {
+  Github: dynamic(() => import("lucide-react").then(mod => mod.Github), { 
+    ssr: false,
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+  }),
+  Linkedin: dynamic(() => import("lucide-react").then(mod => mod.Linkedin), { 
+    ssr: false,
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+  }),
+  Download: dynamic(() => import("lucide-react").then(mod => mod.Download), { 
+    ssr: false,
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+  }),
+  Send: dynamic(() => import("lucide-react").then(mod => mod.Send), { 
+    ssr: false,
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+  }),
+  Mail: dynamic(() => import("lucide-react").then(mod => mod.Mail), {
+    ssr: false,
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+  }),
+  MapPin: dynamic(() => import("lucide-react").then(mod => mod.MapPin), {
+    ssr: false,
+    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />
+  })
+};
+
+// Separate background animations into a dynamic component
+const BackgroundAnimations = dynamic(() => import("./background-animations").then(mod => mod.BackgroundAnimations), {
+  ssr: false,
+  loading: () => null
+});
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
-  const [particles, setParticles] = useState<Array<{
-    width: number;
-    height: number;
-    left: string;
-    top: string;
-    yOffset: number;
-    duration: number;
-  }>>([]);
 
-  // Generate particles only on the client side
   useEffect(() => {
-    const newParticles = Array(8).fill(0).map(() => ({
-      width: Math.random() * 10 + 5,
-      height: Math.random() * 10 + 5,
-      left: `${Math.random() * 90 + 5}%`,
-      top: `${Math.random() * 90 + 5}%`,
-      yOffset: Math.random() * 100 - 50,
-      duration: Math.random() * 10 + 10
-    }));
-    
-    setParticles(newParticles);
-    setMounted(true);
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+    idleCallback(() => setMounted(true));
+    return () => setMounted(false);
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-12 md:py-24 lg:py-32 xl:py-48 overflow-hidden">
-      {/* Static gradient background */}
-      <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-blue-50 via-indigo-50/80 to-white dark:from-slate-950 dark:via-blue-950/50 dark:to-slate-900 -z-10" />
-      
-      {/* Animated background elements */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <motion.div 
-          className="absolute top-20 left-20 w-72 h-72 rounded-full bg-blue-100/30 dark:bg-blue-900/10 blur-3xl"
-          animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.2, 0.3],
-          }}
-          transition={{ duration: 15, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-purple-100/20 dark:bg-purple-900/10 blur-3xl"
-          animate={{ 
-            scale: [1.1, 1, 1.1],
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{ duration: 20, repeat: Infinity, delay: 5 }}
-        />
-        
-        {/* Floating particles - only rendered client-side */}
-        {mounted && particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-blue-500/10 dark:bg-blue-400/5"
-            style={{
-              width: particle.width,
-              height: particle.height,
-              left: particle.left,
-              top: particle.top,
-            }}
-            animate={{
-              y: [0, particle.yOffset],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
-      
-      <div className="container mx-auto px-4 md:px-6 z-10 flex flex-col items-center">
-        {/* Profile Card - Instagram/Facebook style */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="w-full max-w-2xl bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200/50 dark:border-slate-700/50 overflow-hidden"
-        >
-          {/* Cover image */}
-          <div className="relative h-48 md:h-60 w-full overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700">
-              {/* Cover pattern */}
-              <div className="absolute inset-0 opacity-20">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <defs>
-                    <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
-                      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="white" strokeWidth="0.5" opacity="0.5" />
-                    </pattern>
-                  </defs>
-                  <rect width="100" height="100" fill="url(#grid)" />
-                </svg>
-              </div>
-            </div>
-            
-            {/* Small header - floating above cover */}
-            <motion.div 
-              className="absolute top-4 left-4 right-4 flex justify-between items-center"
-              initial={{ opacity: 0, y: -20 }}
+    <LazyMotion features={domAnimation}>
+      <section className="relative w-full min-h-screen">
+        {/* Cover Image / Background */}
+        <div className="absolute inset-0 h-[40vh] bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+          {mounted && <BackgroundAnimations />}
+        </div>
+
+        {/* Profile Content */}
+        <div className="relative pt-[25vh]">
+          <div className="container mx-auto px-4">
+            <m.div
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              transition={{ duration: 0.8 }}
+              className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 dark:border-slate-700/30"
             >
-              <div className="text-white text-lg font-bold">Portfolio</div>
-              <div className="flex gap-2">
-                <motion.a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  className="bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/30 transition-colors"
-                >
-                  <Github className="h-4 w-4 text-white" />
-                </motion.a>
-                <motion.a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  className="bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/30 transition-colors"
-                >
-                  <Linkedin className="h-4 w-4 text-white" />
-                </motion.a>
+              {/* Profile Header */}
+              <div className="px-6 pt-20 pb-6 md:px-8 relative">
+                {/* Profile Picture */}
+                <div className="absolute -top-16 left-1/2 -translate-x-1/2 md:left-8 md:translate-x-0">
+                  <m.div
+                    whileHover={{ scale: 1.05 }}
+                    className="relative w-32 h-32 md:w-40 md:h-40"
+                  >
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 p-1">
+                      <div className="rounded-full overflow-hidden p-2">
+                        <OptimizedImage
+                          alt="Ziad Mostafa"
+                          className="rounded-full object-cover p-1"
+                          src="/file.enc"
+                          fill
+                          sizes="(max-width: 768px) 128px, 160px"
+                          priority
+                          quality={90}
+                        />
+                      </div>
+                    </div>
+                    {/* Online Status Indicator */}
+                    <span className="absolute bottom-2 right-2 w-4 h-4 bg-green-500 rounded-full ring-2 ring-white dark:ring-slate-900" />
+                  </m.div>
+                </div>
+
+                {/* Profile Info */}
+                <div className="md:ml-44">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div className="text-center md:text-left">
+                      <m.h1 
+                        className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        Ziad Mostafa
+                      </m.h1>
+                      <m.p 
+                        className="text-slate-600 dark:text-slate-400 mt-1"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        Front-End Developer
+                      </m.p>
+                      <m.div 
+                        className="flex items-center justify-center md:justify-start gap-2 mt-2 text-sm text-slate-500 dark:text-slate-400"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                      >
+                        {mounted && <DynamicIcons.MapPin className="w-4 h-4" />}
+                        <span>Egypt</span>
+                      </m.div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <m.div 
+                      className="flex flex-wrap justify-center md:justify-end gap-3"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      <Button 
+                        asChild
+                        size="lg"
+                        className="shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-500/10 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                      >
+                        <Link href="#contact">
+                          {mounted && <DynamicIcons.Send className="mr-2 h-4 w-4" />}
+                          Contact Me
+                        </Link>
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        size="lg"
+                        asChild
+                        className="shadow-lg hover:shadow-lg hover:shadow-indigo-500/10 dark:border-indigo-800/50 hover:border-indigo-500 dark:hover:border-indigo-600"
+                      >
+                        <a href="/Ziad-Mostafa-Front-End-Developer.pdf" target="_blank" download>
+                          {mounted && <DynamicIcons.Download className="mr-2 h-4 w-4" />}
+                          Download CV
+                        </a>
+                      </Button>
+                    </m.div>
+                  </div>
+
+                  {/* Stats Section */}
+                  <m.div 
+                    className="grid grid-cols-3 gap-4 mt-6 py-4 border-t border-b border-slate-200 dark:border-slate-800"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                  >
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">15+</div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">Projects</div>
+                    </div>
+                    <div className="text-center border-x border-slate-200 dark:border-slate-800">
+                      <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">2+</div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">Years</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">20+</div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">Skills</div>
+                    </div>
+                  </m.div>
+
+                  {/* Social Links */}
+                  <m.div 
+                    className="flex justify-center md:justify-start gap-3 mt-6"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.7 }}
+                  >
+                    <m.a
+                      href="https://github.com/ziadmustafa1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all duration-300"
+                    >
+                      {mounted && (
+                        <>
+                          <DynamicIcons.Github className="h-5 w-5 text-slate-700 dark:text-slate-300" />
+                          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs">
+                            GitHub
+                          </span>
+                        </>
+                      )}
+                    </m.a>
+                    <m.a
+                      href="https://www.linkedin.com/in/ziad-mostafa-2a4315179"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all duration-300"
+                    >
+                      {mounted && (
+                        <>
+                          <DynamicIcons.Linkedin className="h-5 w-5 text-slate-700 dark:text-slate-300" />
+                          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs">
+                            LinkedIn
+                          </span>
+                        </>
+                      )}
+                    </m.a>
+                    <m.a
+                      href="mailto:ziadmostafadev@gmail.com"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all duration-300"
+                    >
+                      {mounted && (
+                        <>
+                          <DynamicIcons.Mail className="h-5 w-5 text-slate-700 dark:text-slate-300" />
+                          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs">
+                            Email
+                          </span>
+                        </>
+                      )}
+                    </m.a>
+                  </m.div>
+                </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
-          
-          {/* Profile image */}
-          <div className="relative flex justify-center">
-            <motion.div 
-              className="absolute -top-16 w-32 h-32 md:w-40 md:h-40"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl">
-                <Image
-                  alt="Zeyad Mostafa"
-                  className="object-cover rounded-full"
-                  src="/image.png"
-                  fill
-                  sizes="(max-width: 768px) 8rem, 10rem"
-                  priority
-                />
-              </div>
-              
-              {/* Subtle overlay shine effect */}
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 rounded-full"
-                initial={{ rotate: -20, scale: 1.5 }}
-                animate={{ 
-                  rotate: [0, 180],
-                  x: ['0%', '100%', '0%'],
-                }}
-                transition={{ 
-                  duration: 8, 
-                  ease: "linear",
-                  repeat: Infinity,
-                  repeatType: "mirror"
-                }}
-              />
-            </motion.div>
-          </div>
-          
-          {/* Profile info */}
-          <div className="pt-20 md:pt-24 px-6 pb-8">
-            <div className="flex flex-col items-center text-center">
-              <motion.h1 
-                className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 mb-1"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                Ziad Mostafa
-              </motion.h1>
-              <motion.p 
-                className="text-sm md:text-base text-gray-600 dark:text-gray-400 mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              >
-                Front-End Developer
-              </motion.p>
-              <motion.p 
-                className="text-sm text-gray-500 dark:text-gray-400 max-w-md mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-              >
-                Crafting sleek interfaces with performance and precision.
-              </motion.p>
-              
-              {/* Stats */}
-              <motion.div 
-                className="flex justify-between w-full border-t border-b border-slate-200 dark:border-slate-700 py-3 mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-              >
-                <div className="text-center px-4">
-                  <p className="text-lg font-bold">15+</p>
-                  <p className="text-xs font-semibold text-blue-600 dark:text-blue-400">Projects</p>
-                </div>
-                <div className="text-center px-4 border-x border-slate-200 dark:border-slate-700">
-                  <p className="text-lg font-bold">2+</p>
-                  <p className="text-xs font-semibold text-blue-600 dark:text-blue-400">Years</p>
-                </div>
-                <div className="text-center px-4">
-                  <p className="text-lg font-bold">20+</p>
-                  <p className="text-xs font-semibold text-blue-600 dark:text-blue-400">Skills</p>
-                </div>
-              </motion.div>
-              
-              {/* Action buttons */}
-              <motion.div 
-                className="flex flex-wrap justify-center gap-3"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-              >
-                <Button 
-                  asChild 
-                  className="shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-500/10 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-600 dark:to-indigo-600 border-0 transition-all duration-300"
-                >
-                  <Link href="#contact">
-                    <Send className="mr-2 h-4 w-4" /> Contact Me
-                  </Link>
-                </Button>
-                <Button 
-                  variant="outline" 
-                  asChild 
-                  className="shadow-lg hover:shadow-lg hover:shadow-indigo-500/10 dark:border-indigo-800/50 hover:border-indigo-500 dark:hover:border-indigo-600 transition-all duration-300"
-                >
-                  <a href="/resume.pdf" target="_blank" download>
-                    <Download className="mr-2 h-4 w-4" /> View CV
-                  </a>
-                </Button>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </LazyMotion>
   );
 }

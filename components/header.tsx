@@ -1,9 +1,36 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { LazyMotion, domAnimation, m } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
+import { throttle } from "@/lib/utils";
+
+// Dynamically import icons and animations
+const DynamicIcons = {
+  Moon: dynamic(() => import("lucide-react").then(mod => mod.Moon), {
+    ssr: false,
+    loading: () => <div className="w-[18px] h-[18px] bg-slate-300/20 rounded" />
+  }),
+  Sun: dynamic(() => import("lucide-react").then(mod => mod.Sun), {
+    ssr: false,
+    loading: () => <div className="w-[18px] h-[18px] bg-slate-300/20 rounded" />
+  }),
+  Menu: dynamic(() => import("lucide-react").then(mod => mod.Menu), {
+    ssr: false,
+    loading: () => <div className="w-5 h-5 bg-slate-300/20 rounded" />
+  }),
+  X: dynamic(() => import("lucide-react").then(mod => mod.X), {
+    ssr: false,
+    loading: () => <div className="w-5 h-5 bg-slate-300/20 rounded" />
+  })
+};
+
+// Dynamically import mobile menu
+const MobileMenu = dynamic(() => import("./mobile-menu").then(mod => mod.MobileMenu), {
+  ssr: false,
+  loading: () => null
+});
 
 export function Header() {
   const [activeSection, setActiveSection] = useState("home");
@@ -21,38 +48,55 @@ export function Header() {
     { id: "contact", label: "Contact" },
   ], []);
 
-  useEffect(() => {
-    setMounted(true);
+  // Throttled scroll handler with optimized calculations
+  const handleScroll = useCallback(throttle(() => {
+    if (!mounted) return;
     
-    const handleScroll = () => {
+    // Use requestAnimationFrame for smooth animations
+    requestAnimationFrame(() => {
       // Calculate scroll progress
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
+      const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
       setScrollProgress(progress);
 
       // Check if page is scrolled
       setIsScrolled(window.scrollY > 50);
       
-      // Determine active section
-      const sectionElements = sections.map(section => ({
-        id: section.id,
-        element: document.getElementById(section.id),
-      })).filter(section => section.element);
+      // Determine active section using IntersectionObserver instead of getBoundingClientRect
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section.id);
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.top <= 150 && rect.bottom > 0;
+      });
       
-      for (let i = sectionElements.length - 1; i >= 0; i--) {
-        const { id, element } = sectionElements[i];
-        if (element && element.getBoundingClientRect().top <= 150) {
-          setActiveSection(id);
-          break;
-        }
+      if (currentSection) {
+        setActiveSection(currentSection.id);
       }
+    });
+  }, 100), [sections, mounted]);
+
+  useEffect(() => {
+    // Use requestIdleCallback for non-critical initialization
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+    
+    const cleanup = () => {
+      window.removeEventListener("scroll", handleScroll);
+      setMounted(false);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections]);
+    if (typeof window !== 'undefined') {
+      idleCallback(() => {
+        setMounted(true);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+      });
+    }
+    
+    return cleanup;
+  }, [handleScroll]);
 
-  const handleNavigation = (sectionId: string) => {
+  const handleNavigation = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -60,10 +104,10 @@ export function Header() {
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
-  };
+  }, [isMobileMenuOpen]);
 
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       {/* Centered header */}
       <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center items-center py-4 transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
         <div className="mx-auto px-6 py-2.5 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-700/50 shadow-lg">
@@ -89,55 +133,39 @@ export function Header() {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2 rounded-md text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {mounted && (isMobileMenuOpen ? <DynamicIcons.X /> : <DynamicIcons.Menu />)}
             </button>
             
             {/* Theme toggle */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-md text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+              aria-label="Toggle theme"
             >
-              {mounted && (theme === "dark" ? <Sun size={18} /> : <Moon size={18} />)}
+              {mounted && (theme === "dark" ? <DynamicIcons.Sun /> : <DynamicIcons.Moon />)}
             </button>
           </div>
         </div>
       </header>
       
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-20 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 shadow-lg md:hidden"
-          >
-            <nav className="container flex flex-col space-y-1 p-4">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => handleNavigation(section.id)}
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    activeSection === section.id
-                      ? "bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400"
-                      : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  }`}
-                >
-                  {section.label}
-                </button>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile menu - only render when needed */}
+      {mounted && isMobileMenuOpen && (
+        <MobileMenu 
+          sections={sections}
+          activeSection={activeSection}
+          onNavigate={handleNavigation}
+        />
+      )}
       
-      {/* Scroll progress bar */}
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-blue-600 dark:bg-blue-500 z-50 origin-left"
-        style={{ scaleX: `${scrollProgress / 100}` }}
-      />
-    </>
+      {/* Scroll progress bar - only render when mounted */}
+      {mounted && (
+        <m.div 
+          className="fixed top-0 left-0 right-0 h-1 bg-blue-600 dark:bg-blue-500 z-50 origin-left"
+          style={{ transform: `scaleX(${scrollProgress / 100})` }}
+        />
+      )}
+    </LazyMotion>
   );
 }
