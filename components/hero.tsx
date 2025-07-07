@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { OptimizedImage } from '@/components/ui/optimized-image';
+import Image from 'next/image';
 
 // Dynamically import icons with loading state
 const DynamicIcons = {
@@ -80,15 +81,21 @@ export function Hero() {
                     className="relative w-32 h-32 md:w-40 md:h-40"
                   >
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 p-1">
-                      <div className="rounded-full overflow-hidden p-2">
-                        <OptimizedImage
+                      <div className="rounded-full overflow-hidden">
+                        <Image
                           alt="Ziad Mostafa"
                           className="rounded-full object-cover p-1"
-                          src="/file.enc"
+                          src="/file.png"
                           fill
-                          sizes="(max-width: 768px) 128px, 160px"
+                          sizes="(max-width: 768px) 8rem, 10rem"
                           priority
                           quality={90}
+                          onError={() => {
+                            const img = document.querySelector('img[alt="Ziad Mostafa"]') as HTMLImageElement;
+                            if (img) {
+                              img.src = '/placeholder.svg';
+                            }
+                          }}
                         />
                       </div>
                     </div>
