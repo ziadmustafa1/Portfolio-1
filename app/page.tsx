@@ -1,37 +1,9 @@
 import { Hero } from '@/components/hero';
 import { About } from '@/components/about';
-import dynamic from 'next/dynamic';
-
-// Dynamically import non-critical components
-const Skills = dynamic(
-  () => import('@/components/skills').then((mod) => ({ default: mod.Skills })),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="w-full h-[50vh] flex justify-center items-center bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950" />
-    ),
-  },
-);
-
-const Projects = dynamic(
-  () => import('@/components/projects').then((mod) => ({ default: mod.Projects })),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="w-full h-[50vh] flex justify-center items-center bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950" />
-    ),
-  },
-);
-
-const Contact = dynamic(
-  () => import('@/components/contact').then((mod) => ({ default: mod.Contact })),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="w-full h-[40vh] flex justify-center items-center bg-slate-50 dark:bg-slate-950" />
-    ),
-  },
-);
+import { Experience } from '@/components/experience';
+import { Skills } from '@/components/skills';
+import { Projects } from '@/components/projects';
+import { Contact } from '@/components/contact';
 
 export default function Home() {
   return (
@@ -41,6 +13,9 @@ export default function Home() {
       </section>
       <section id="about" className="w-full flex justify-center">
         <About />
+      </section>
+      <section id="experience" className="w-full flex justify-center">
+        <Experience />
       </section>
       <section id="skills" className="w-full flex justify-center">
         <Skills />
@@ -54,8 +29,7 @@ export default function Home() {
 
       <footer className="w-full py-8 text-center text-sm text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
         <div className="container">
-          <p>© {new Date().getFullYear()} Zeyad Mostafa. All rights reserved.</p>
-          <p className="mt-1">Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion</p>
+          <p>© {new Date().getFullYear()} Ziad Mostafa. Built with Next.js, TypeScript, Tailwind CSS.</p>
         </div>
       </footer>
     </div>

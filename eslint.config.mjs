@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
+import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,6 +18,9 @@ export default [
   },
   ...compat.extends('next/core-web-vitals'),
   {
+    plugins: {
+      '@typescript-eslint': typescriptEslint,
+    },
     rules: {
       '@typescript-eslint/no-explicit-any': [
         'error',

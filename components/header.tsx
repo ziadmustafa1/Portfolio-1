@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
-import { throttle } from '@/lib/utils';
 
 // Dynamically import icons and animations
 const DynamicIcons = {
@@ -44,6 +43,7 @@ export function Header() {
     () => [
       { id: 'home', label: 'Home' },
       { id: 'about', label: 'About' },
+      { id: 'experience', label: 'Experience' },
       { id: 'skills', label: 'Skills' },
       { id: 'projects', label: 'Projects' },
       { id: 'contact', label: 'Contact' },
@@ -51,43 +51,42 @@ export function Header() {
     [],
   );
 
-  // Throttled scroll handler with optimized calculations
-  const handleScroll = useCallback(
-    throttle(() => {
-      if (!mounted) return;
-
-      // Use requestAnimationFrame for smooth animations
-      requestAnimationFrame(() => {
-        // Calculate scroll progress
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
-        setScrollProgress(progress);
-
-        // Check if page is scrolled
-        setIsScrolled(window.scrollY > 50);
-
-        // Determine active section using IntersectionObserver instead of getBoundingClientRect
-        const currentSection = sections.find((section) => {
-          const element = document.getElementById(section.id);
-          if (!element) return false;
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 150 && rect.bottom > 0;
-        });
-
-        if (currentSection) {
-          setActiveSection(currentSection.id);
-        }
-      });
-    }, 100),
-    [sections, mounted],
-  );
-
   useEffect(() => {
-    // Use requestIdleCallback for non-critical initialization
     const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+    let frameId = 0;
+    let lastRun = 0;
+
+    const updateScrollState = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress =
+        totalHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100)) : 0;
+
+      setScrollProgress(progress);
+      setIsScrolled(window.scrollY > 50);
+
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section.id);
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.top <= 150 && rect.bottom > 0;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection.id);
+      }
+    };
+
+    const handleScroll = () => {
+      const now = Date.now();
+      if (now - lastRun < 100) return;
+      lastRun = now;
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(updateScrollState);
+    };
 
     const cleanup = () => {
       window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(frameId);
       setMounted(false);
     };
 
@@ -95,12 +94,12 @@ export function Header() {
       idleCallback(() => {
         setMounted(true);
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
+        updateScrollState();
       });
     }
 
     return cleanup;
-  }, [handleScroll]);
+  }, [sections]);
 
   const handleNavigation = useCallback(
     (sectionId: string) => {

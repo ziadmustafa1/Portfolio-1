@@ -1,0 +1,471 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - navigation [ref=e5]:
+        - button "Home" [ref=e6]
+        - button "About" [ref=e7]
+        - button "Experience" [ref=e8]
+        - button "Skills" [ref=e9]
+        - button "Projects" [ref=e10]
+        - button "Contact" [ref=e11]
+      - button "Toggle theme" [ref=e12]
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e20]:
+        - img "Ziad Mostafa" [ref=e23]
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - generic [ref=e27]:
+                - img [ref=e28]
+                - text: Freelance since 2022
+              - generic [ref=e31]:
+                - img [ref=e32]
+                - text: Egypt
+            - generic [ref=e35]:
+              - heading "Ziad Mostafa" [level=1] [ref=e36]
+              - paragraph [ref=e37]: Freelance Full-Stack Software Engineer
+            - paragraph [ref=e38]: I build production-focused web apps, SaaS dashboards, admin systems, marketplaces, and developer tools with Next.js, React, TypeScript, NestJS, Prisma, and PostgreSQL.
+          - generic [ref=e39]:
+            - link "View Projects" [ref=e40] [cursor=pointer]:
+              - /url: "#projects"
+            - link "Download CV" [ref=e41] [cursor=pointer]:
+              - /url: /Ziad_Mostafa_ATS_CV_Updated.pdf
+              - img
+              - text: Download CV
+            - link "Contact on WhatsApp" [ref=e42] [cursor=pointer]:
+              - /url: https://wa.me/201154790469
+              - img
+              - text: Contact on WhatsApp
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - generic [ref=e45]: Location
+              - generic [ref=e46]: Egypt
+            - generic [ref=e47]:
+              - generic [ref=e48]: Experience
+              - generic [ref=e49]: Freelance since 2022
+            - generic [ref=e50]:
+              - generic [ref=e51]: Focus
+              - generic [ref=e52]: Full-stack web apps
+          - generic [ref=e53]:
+            - link "GitHub" [ref=e54] [cursor=pointer]:
+              - /url: https://github.com/ziadmustafa1
+              - img [ref=e55]
+              - text: GitHub
+            - link "LinkedIn" [ref=e58] [cursor=pointer]:
+              - /url: https://linkedin.com/in/ziad-mostafa-2a4315179
+              - img [ref=e59]
+              - text: LinkedIn
+            - link "Email" [ref=e63] [cursor=pointer]:
+              - /url: mailto:123ziadmstfy@gmail.com
+              - img [ref=e64]
+              - text: Email
+      - generic [ref=e70]:
+        - generic [ref=e71]:
+          - paragraph [ref=e72]: About
+          - heading "Full-stack work for real business software." [level=2] [ref=e73]
+          - paragraph [ref=e74]: "I am a freelance full-stack developer focused on building real business software: SaaS dashboards, legal-tech systems, e-commerce tools, scheduling systems, and developer tooling. I work mainly with Next.js, React, TypeScript, NestJS, Prisma, and PostgreSQL. I care about clean architecture, backend-owned business logic, role-based access, responsive UI, and deployable production workflows."
+        - generic [ref=e75]:
+          - heading "Working Focus" [level=3] [ref=e76]
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - img [ref=e79]
+              - generic [ref=e82]: Clean architecture
+            - generic [ref=e83]:
+              - img [ref=e84]
+              - generic [ref=e87]: Backend-owned business logic
+            - generic [ref=e88]:
+              - img [ref=e89]
+              - generic [ref=e92]: Role-based access
+            - generic [ref=e93]:
+              - img [ref=e94]
+              - generic [ref=e97]: Responsive UI
+            - generic [ref=e98]:
+              - img [ref=e99]
+              - generic [ref=e102]: Deployable workflows
+          - generic [ref=e103]:
+            - heading "Languages" [level=4] [ref=e104]
+            - generic [ref=e105]:
+              - generic [ref=e106]: "Arabic: Native"
+              - generic [ref=e107]: "English: Basic"
+      - generic [ref=e111]:
+        - paragraph [ref=e112]: Experience
+        - heading "Freelance full-stack engineering since 2022." [level=2] [ref=e113]
+        - article [ref=e115]:
+          - generic [ref=e117]:
+            - heading "Freelance Full-Stack Software Engineer" [level=3] [ref=e118]
+            - generic [ref=e119]:
+              - generic [ref=e120]:
+                - img [ref=e121]
+                - text: 2022 - Present
+              - generic [ref=e125]:
+                - img [ref=e126]
+                - text: Egypt / Remote
+          - list [ref=e129]:
+            - listitem [ref=e130]:
+              - generic [ref=e132]: Built and maintained full-stack web applications using Next.js, React, TypeScript, NestJS, Prisma, and PostgreSQL.
+            - listitem [ref=e133]:
+              - generic [ref=e135]: Developed SaaS dashboards, admin panels, e-commerce flows, legal-tech modules, scheduling systems, and content platforms.
+            - listitem [ref=e136]:
+              - generic [ref=e138]: Implemented authentication, authorization, RBAC, REST APIs, file uploads, real-time communication, and deployment workflows.
+            - listitem [ref=e139]:
+              - generic [ref=e141]: Worked on production-oriented architecture using VPS deployments, NGINX, PM2, GitHub Actions, and Vercel.
+            - listitem [ref=e142]:
+              - generic [ref=e144]: Created reusable tools and libraries, including a Next.js + NestJS toolkit and multilingual country/state data package.
+      - generic [ref=e148]:
+        - generic [ref=e149]:
+          - paragraph [ref=e150]: Skills
+          - heading "Practical stack for shipping full-stack products." [level=2] [ref=e151]
+          - paragraph [ref=e152]: Grouped skills without fake percentages. These are the tools and product areas used across current portfolio work.
+        - generic [ref=e153]:
+          - generic [ref=e156]:
+            - generic [ref=e157]:
+              - img [ref=e159]
+              - generic [ref=e163]:
+                - heading "Frontend" [level=3] [ref=e164]
+                - paragraph [ref=e165]: Application UI, dashboards, forms, data fetching, and responsive interfaces.
+            - generic [ref=e166]:
+              - generic [ref=e167]: Next.js
+              - generic [ref=e168]: React
+              - generic [ref=e169]: TypeScript
+              - generic [ref=e170]: Tailwind CSS
+              - generic [ref=e171]: HeroUI
+              - generic [ref=e172]: Shadcn/Radix UI
+              - generic [ref=e173]: Framer Motion
+              - generic [ref=e174]: React Hook Form
+              - generic [ref=e175]: Yup
+              - generic [ref=e176]: Zod
+              - generic [ref=e177]: Zustand
+              - generic [ref=e178]: TanStack Query / React Query
+              - generic [ref=e179]: SWR
+              - generic [ref=e180]: Axios
+              - generic [ref=e181]: Responsive UI
+              - generic [ref=e182]: Dashboard UI
+              - generic [ref=e183]: SaaS UI
+              - generic [ref=e184]: RTL / Arabic UI
+          - generic [ref=e187]:
+            - generic [ref=e188]:
+              - img [ref=e190]
+              - generic [ref=e193]:
+                - heading "Backend" [level=3] [ref=e194]
+                - paragraph [ref=e195]: API services, auth, permissions, real-time features, and production workflows.
+            - generic [ref=e196]:
+              - generic [ref=e197]: NestJS
+              - generic [ref=e198]: Fastify
+              - generic [ref=e199]: Express
+              - generic [ref=e200]: Prisma
+              - generic [ref=e201]: REST APIs
+              - generic [ref=e202]: Authentication
+              - generic [ref=e203]: JWT
+              - generic [ref=e204]: RBAC
+              - generic [ref=e205]: WebSockets
+              - generic [ref=e206]: File uploads
+              - generic [ref=e207]: Redis / BullMQ basics
+              - generic [ref=e208]: Swagger/OpenAPI
+          - generic [ref=e211]:
+            - generic [ref=e212]:
+              - img [ref=e214]
+              - generic [ref=e218]:
+                - heading "Database" [level=3] [ref=e219]
+                - paragraph [ref=e220]: Relational data modeling and backend-owned business logic.
+            - generic [ref=e221]:
+              - generic [ref=e222]: PostgreSQL
+              - generic [ref=e223]: Prisma schema design
+              - generic [ref=e224]: Migrations
+              - generic [ref=e225]: Audit logs
+              - generic [ref=e226]: Data exports
+          - generic [ref=e229]:
+            - generic [ref=e230]:
+              - img [ref=e232]
+              - generic [ref=e236]:
+                - heading "DevOps / Deployment" [level=3] [ref=e237]
+                - paragraph [ref=e238]: Deployable systems for Vercel and VPS environments.
+            - generic [ref=e239]:
+              - generic [ref=e240]: Git
+              - generic [ref=e241]: GitHub
+              - generic [ref=e242]: GitHub Actions
+              - generic [ref=e243]: PM2
+              - generic [ref=e244]: NGINX
+              - generic [ref=e245]: VPS deployment
+              - generic [ref=e246]: Vercel
+              - generic [ref=e247]: Docker basics
+              - generic [ref=e248]: pnpm
+              - generic [ref=e249]: bun
+              - generic [ref=e250]: Turbo
+          - generic [ref=e253]:
+            - generic [ref=e254]:
+              - img [ref=e256]
+              - generic [ref=e259]:
+                - heading "Testing / Quality" [level=3] [ref=e260]
+                - paragraph [ref=e261]: Focused checks for application behavior and product stability.
+            - generic [ref=e262]:
+              - generic [ref=e263]: Vitest
+              - generic [ref=e264]: Playwright basics
+              - generic [ref=e265]: TypeScript strictness
+              - generic [ref=e266]: ESLint
+              - generic [ref=e267]: Code reviews
+          - generic [ref=e270]:
+            - generic [ref=e271]:
+              - img [ref=e273]
+              - generic [ref=e275]:
+                - heading "Product Types" [level=3] [ref=e276]
+                - paragraph [ref=e277]: Practical experience across recruiter and client-facing software categories.
+            - generic [ref=e278]:
+              - generic [ref=e279]: SaaS dashboards
+              - generic [ref=e280]: Admin systems
+              - generic [ref=e281]: Marketplaces
+              - generic [ref=e282]: Scheduling systems
+              - generic [ref=e283]: Legal-tech systems
+              - generic [ref=e284]: E-commerce tools
+              - generic [ref=e285]: Developer tooling
+              - generic [ref=e286]: Education platforms
+      - generic [ref=e290]:
+        - generic [ref=e291]:
+          - paragraph [ref=e292]: Projects
+          - heading "Production-focused portfolio work." [level=2] [ref=e293]
+          - paragraph [ref=e294]: Featured full-stack, SaaS, marketplace, education, AI-style, and open-source work. Private repositories are labeled clearly instead of linking to unavailable code.
+        - generic [ref=e295]:
+          - article [ref=e296]:
+            - generic [ref=e298]:
+              - generic [ref=e300]:
+                - generic [ref=e301]:
+                  - heading "Wexts" [level=3] [ref=e302]
+                  - generic [ref=e303]: Featured
+                - paragraph [ref=e304]: Developer Tool / Full-Stack Toolkit
+              - paragraph [ref=e305]: Production-focused toolkit for building Next.js + NestJS apps with a single production runtime, generated typed RPC, CLI/codegen, Fastify server, security layer, tests, docs, and a verified example.
+              - generic [ref=e306]:
+                - generic [ref=e307]: Next.js
+                - generic [ref=e308]: NestJS
+                - generic [ref=e309]: Fastify
+                - generic [ref=e310]: TypeScript
+                - generic [ref=e311]: pnpm workspaces
+                - generic [ref=e312]: Turbo
+                - generic [ref=e313]: Changesets
+                - generic [ref=e314]: RPC codegen
+                - generic [ref=e315]: Security middleware
+              - list [ref=e316]:
+                - listitem [ref=e317]:
+                  - generic [ref=e319]: Single Fastify production runtime with Next.js routes, NestJS under /api, and Wexts RPC under /rpc.
+                - listitem [ref=e320]:
+                  - generic [ref=e322]: Generated typed RPC client plus CLI commands for create, generate/codegen, build, start, and doctor.
+                - listitem [ref=e323]:
+                  - generic [ref=e325]: Wexts Shield with security headers, strict CORS, CSRF checks, request/body limits, route policies, rate limiting, concurrency limits, audit logs, and redaction.
+                - listitem [ref=e326]:
+                  - generic [ref=e328]: Deployment, runtime, CLI, troubleshooting, and semver documentation.
+              - link "GitHub" [ref=e330] [cursor=pointer]:
+                - /url: https://github.com/ziadmustafa1/wexts
+                - img
+                - text: GitHub
+          - article [ref=e331]:
+            - generic [ref=e333]:
+              - generic [ref=e334]:
+                - generic [ref=e335]:
+                  - generic [ref=e336]:
+                    - heading "Falak Legal / Lexniva" [level=3] [ref=e337]
+                    - generic [ref=e338]: Featured
+                  - paragraph [ref=e339]: Law Office Management SaaS
+                - generic [ref=e340]:
+                  - img [ref=e341]
+                  - text: Private repository
+              - paragraph [ref=e345]: Arabic/English law office management platform for cases, clients, hearings, documents, invoices, tasks, users, permissions, client portal, audit logs, and encrypted sensitive data.
+              - generic [ref=e346]:
+                - generic [ref=e347]: Next.js 16
+                - generic [ref=e348]: React 19
+                - generic [ref=e349]: HeroUI
+                - generic [ref=e350]: Tailwind CSS 4
+                - generic [ref=e351]: TanStack Query
+                - generic [ref=e352]: Zustand
+                - generic [ref=e353]: next-intl
+                - generic [ref=e354]: NestJS 11
+                - generic [ref=e355]: Fastify
+                - generic [ref=e356]: Prisma
+                - generic [ref=e357]: PostgreSQL
+                - generic [ref=e358]: JWT
+                - generic [ref=e359]: BullMQ
+                - generic [ref=e360]: Redis
+                - generic [ref=e361]: WebSockets
+                - generic [ref=e362]: Swagger
+                - generic [ref=e363]: S3
+              - list [ref=e364]:
+                - listitem [ref=e365]:
+                  - generic [ref=e367]: Multi-tenant law firm system with case, client, hearing, task, document, invoice, and payment modules.
+                - listitem [ref=e368]:
+                  - generic [ref=e370]: RBAC, audit logs, client portal, real-time features, and secure sensitive-data workflows.
+                - listitem [ref=e371]:
+                  - generic [ref=e373]: PDF, Excel, and CSV exports with backend services for business logic.
+          - article [ref=e375]:
+            - generic [ref=e377]:
+              - generic [ref=e378]:
+                - generic [ref=e379]:
+                  - generic [ref=e380]:
+                    - heading "Time Slot Manager" [level=3] [ref=e381]
+                    - generic [ref=e382]: Featured
+                  - paragraph [ref=e383]: Marketplace / Scheduling SaaS
+                - generic [ref=e384]:
+                  - img [ref=e385]
+                  - text: Private repository
+              - paragraph [ref=e389]: Scheduling and time-slot management system for merchants, branches, pickup/delivery methods, slot templates, actual slots, blackout dates, reservations, and platform integrations.
+              - generic [ref=e390]:
+                - generic [ref=e391]: Next.js 16
+                - generic [ref=e392]: React 18
+                - generic [ref=e393]: TypeScript
+                - generic [ref=e394]: Prisma 6
+                - generic [ref=e395]: PostgreSQL
+                - generic [ref=e396]: NextAuth/Auth.js
+                - generic [ref=e397]: TanStack Query
+                - generic [ref=e398]: React Hook Form
+                - generic [ref=e399]: Zod
+                - generic [ref=e400]: Radix UI
+                - generic [ref=e401]: Tailwind CSS
+                - generic [ref=e402]: Vitest
+                - generic [ref=e403]: Bun
+              - list [ref=e404]:
+                - listitem [ref=e405]:
+                  - generic [ref=e407]: Merchant settings, branches, delivery/pickup methods, slot templates, generated slots, and blackout dates.
+                - listitem [ref=e408]:
+                  - generic [ref=e410]: Reservations, capacity handling, admin dashboard, and public booking widget.
+                - listitem [ref=e411]:
+                  - generic [ref=e413]: OAuth and webhook architecture for Salla/Zid-style marketplace integrations.
+          - article [ref=e415]:
+            - generic [ref=e417]:
+              - generic [ref=e418]:
+                - generic [ref=e419]:
+                  - heading "Hikaya Stories" [level=3] [ref=e421]
+                  - paragraph [ref=e422]: Early Childhood Education Platform
+                - generic [ref=e423]:
+                  - img [ref=e424]
+                  - text: Private repository
+              - paragraph [ref=e428]: Arabic nursery content platform for early childhood education with admin-created official content and nursery-user access.
+              - generic [ref=e429]:
+                - generic [ref=e430]: Next.js 16
+                - generic [ref=e431]: React 19
+                - generic [ref=e432]: HeroUI
+                - generic [ref=e433]: React Hook Form
+                - generic [ref=e434]: Zod
+                - generic [ref=e435]: TypeScript
+                - generic [ref=e436]: NestJS 11
+                - generic [ref=e437]: Prisma
+                - generic [ref=e438]: PostgreSQL
+                - generic [ref=e439]: Redis
+                - generic [ref=e440]: BullMQ
+                - generic [ref=e441]: Cloudflare R2
+                - generic [ref=e442]: Docker Compose
+                - generic [ref=e443]: Bun
+              - list [ref=e444]:
+                - listitem [ref=e445]:
+                  - generic [ref=e447]: Stories, educational materials, videos, podcasts, nursery accounts, and admin content management.
+                - listitem [ref=e448]:
+                  - generic [ref=e450]: Auth-required app beyond the landing page with admin and nursery roles.
+                - listitem [ref=e451]:
+                  - generic [ref=e453]: Frontend/backend split with thin routes and business logic in backend services.
+          - article [ref=e455]:
+            - generic [ref=e457]:
+              - generic [ref=e458]:
+                - generic [ref=e459]:
+                  - heading "Aetheris AI" [level=3] [ref=e461]
+                  - paragraph [ref=e462]: Full-Stack AI/SaaS-Style App
+                - generic [ref=e463]:
+                  - img [ref=e464]
+                  - text: Private repository
+              - paragraph [ref=e468]: Full-stack SaaS-style app with dashboard UI, API backend, authentication, payments, real-time features, file/media handling, and VPS deployment workflow.
+              - generic [ref=e469]:
+                - generic [ref=e470]: Next.js 16
+                - generic [ref=e471]: React 19
+                - generic [ref=e472]: HeroUI
+                - generic [ref=e473]: Tailwind CSS 4
+                - generic [ref=e474]: React Hook Form
+                - generic [ref=e475]: Axios
+                - generic [ref=e476]: SWR
+                - generic [ref=e477]: Framer Motion
+                - generic [ref=e478]: Recharts
+                - generic [ref=e479]: Socket.IO
+                - generic [ref=e480]: NestJS 11
+                - generic [ref=e481]: Fastify 5
+                - generic [ref=e482]: Prisma 7
+                - generic [ref=e483]: PostgreSQL
+                - generic [ref=e484]: Stripe
+                - generic [ref=e485]: Cloudinary
+              - list [ref=e486]:
+                - listitem [ref=e487]:
+                  - generic [ref=e489]: Auth, OAuth Google, JWT, Passport, and rate-limited API backend.
+                - listitem [ref=e490]:
+                  - generic [ref=e492]: Real-time features, payments, dashboard UI, PWA support, uploads, and media workflows.
+                - listitem [ref=e493]:
+                  - generic [ref=e495]: VPS deployment workflow with production-oriented backend setup.
+          - article [ref=e497]:
+            - generic [ref=e499]:
+              - generic [ref=e501]:
+                - heading "countries-cities-ar" [level=3] [ref=e503]
+                - paragraph [ref=e504]: Open-Source npm Library
+              - paragraph [ref=e505]: Multilingual country/state/province dataset library for Arabic, English, and French projects. Includes 250 countries and 4,642 states/provinces with Arabic translations for Arab countries.
+              - generic [ref=e506]:
+                - generic [ref=e507]: TypeScript
+                - generic [ref=e508]: tsup
+                - generic [ref=e509]: Vitest
+                - generic [ref=e510]: ESLint
+                - generic [ref=e511]: npm package exports
+                - generic [ref=e512]: ESM/CJS builds
+                - generic [ref=e513]: Type declarations
+              - list [ref=e514]:
+                - listitem [ref=e515]:
+                  - generic [ref=e517]: Usable in React, Next.js, Vue, and TypeScript applications.
+                - listitem [ref=e518]:
+                  - generic [ref=e520]: Arabic, English, and French data access for location forms and admin systems.
+                - listitem [ref=e521]:
+                  - generic [ref=e523]: Package exports with ESM/CJS builds and generated type declarations.
+              - link "GitHub" [ref=e525] [cursor=pointer]:
+                - /url: https://github.com/ziadmustafa1/countries-cities-ar
+                - img
+                - text: GitHub
+        - generic [ref=e526]:
+          - heading "More Projects" [level=3] [ref=e527]
+          - generic [ref=e528]:
+            - generic [ref=e529]: E-commerce apps
+            - generic [ref=e530]: Admin dashboards
+            - generic [ref=e531]: Medical/clinical apps
+            - generic [ref=e532]: E-learning
+            - generic [ref=e533]: Shujasa
+            - generic [ref=e534]: Amazon clone
+      - generic [ref=e538]:
+        - generic [ref=e539]:
+          - paragraph [ref=e540]: Contact
+          - heading "Discuss a role, project, or freelance build." [level=2] [ref=e541]
+          - paragraph [ref=e542]: Reach out by email, WhatsApp, LinkedIn, or use the form to open a prepared email draft. This site does not fake message delivery.
+        - generic [ref=e543]:
+          - generic [ref=e546]:
+            - textbox "Your name" [ref=e548]
+            - textbox "Your email" [ref=e550]
+            - textbox "Project, role, or message details" [ref=e552]
+            - button "Open Email Draft" [ref=e553]:
+              - img
+              - text: Open Email Draft
+          - generic [ref=e554]:
+            - link "Email 123ziadmstfy@gmail.com" [ref=e555] [cursor=pointer]:
+              - /url: mailto:123ziadmstfy@gmail.com
+              - img [ref=e557]
+              - generic [ref=e560]:
+                - generic [ref=e561]: Email
+                - generic [ref=e562]: 123ziadmstfy@gmail.com
+              - img [ref=e563]
+            - link "WhatsApp +20 115 479 0469" [ref=e567] [cursor=pointer]:
+              - /url: https://wa.me/201154790469
+              - img [ref=e569]
+              - generic [ref=e571]:
+                - generic [ref=e572]: WhatsApp
+                - generic [ref=e573]: +20 115 479 0469
+              - img [ref=e574]
+            - link "LinkedIn https://linkedin.com/in/ziad-mostafa-2a4315179" [ref=e578] [cursor=pointer]:
+              - /url: https://linkedin.com/in/ziad-mostafa-2a4315179
+              - img [ref=e580]
+              - generic [ref=e584]:
+                - generic [ref=e585]: LinkedIn
+                - generic [ref=e586]: https://linkedin.com/in/ziad-mostafa-2a4315179
+              - img [ref=e587]
+            - link "GitHub https://github.com/ziadmustafa1" [ref=e591] [cursor=pointer]:
+              - /url: https://github.com/ziadmustafa1
+              - img [ref=e593]
+              - generic [ref=e596]:
+                - generic [ref=e597]: GitHub
+                - generic [ref=e598]: https://github.com/ziadmustafa1
+              - img [ref=e599]
+      - paragraph [ref=e605]: © 2026 Ziad Mostafa. Built with Next.js, TypeScript, Tailwind CSS.

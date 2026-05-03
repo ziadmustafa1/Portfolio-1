@@ -1,1 +1,9 @@
-{ "name": "Zeyad Mostafa Portfolio", "short_name": "Zeyad", "icons": [] }
+{
+  "name": "Ziad Mostafa Portfolio",
+  "short_name": "Ziad",
+  "icons": [],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a"
+}

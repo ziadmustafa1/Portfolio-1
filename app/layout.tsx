@@ -4,7 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/header';
 import Script from 'next/script';
-import { defaultMetadata, structuredData } from './seo-config';
+import { baseUrl, defaultMetadata, structuredData } from './seo-config';
 
 // Load fonts with optimized preload strategy
 const inter = Inter({
@@ -41,9 +41,9 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/image.png" />
 
         {/* Add hreflang tags for language/region targeting */}
-        <link rel="alternate" href="https://zeyad-portfolio.vercel.app" hrefLang="en" />
-        <link rel="alternate" href="https://zeyad-portfolio.vercel.app" hrefLang="ar" />
-        <link rel="alternate" href="https://zeyad-portfolio.vercel.app" hrefLang="x-default" />
+        <link rel="alternate" href={baseUrl} hrefLang="en" />
+        <link rel="alternate" href={baseUrl} hrefLang="ar" />
+        <link rel="alternate" href={baseUrl} hrefLang="x-default" />
       </head>
       <body className="min-h-screen font-sans antialiased bg-white dark:bg-slate-950">
         <ThemeProvider
@@ -62,20 +62,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-
-        {/* Defer non-critical scripts */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXX');
-          `}
-        </Script>
       </body>
     </html>
   );

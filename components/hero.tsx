@@ -1,261 +1,131 @@
 'use client';
 
-import { LazyMotion, domAnimation, m } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-import { OptimizedImage } from '@/components/ui/optimized-image';
 import Image from 'next/image';
+import Link from 'next/link';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Download, Github, Linkedin, Mail, MapPin, MessageSquare, Briefcase } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { profile } from '@/data/profile';
 
-// Dynamically import icons with loading state
-const DynamicIcons = {
-  Github: dynamic(() => import('lucide-react').then((mod) => mod.Github), {
-    ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
-  }),
-  Linkedin: dynamic(() => import('lucide-react').then((mod) => mod.Linkedin), {
-    ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
-  }),
-  Download: dynamic(() => import('lucide-react').then((mod) => mod.Download), {
-    ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
-  }),
-  Send: dynamic(() => import('lucide-react').then((mod) => mod.Send), {
-    ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
-  }),
-  Mail: dynamic(() => import('lucide-react').then((mod) => mod.Mail), {
-    ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
-  }),
-  MapPin: dynamic(() => import('lucide-react').then((mod) => mod.MapPin), {
-    ssr: false,
-    loading: () => <div className="w-5 h-5 bg-white/20 rounded-full" />,
-  }),
-};
+const heroStats = [
+  { label: 'Location', value: profile.location },
+  { label: 'Experience', value: profile.experience },
+  { label: 'Focus', value: 'Full-stack web apps' },
+];
 
-// Separate background animations into a dynamic component
-const BackgroundAnimations = dynamic(
-  () => import('./background-animations').then((mod) => mod.BackgroundAnimations),
-  {
-    ssr: false,
-    loading: () => null,
-  },
-);
+const socialLinks = [
+  { label: 'GitHub', href: profile.github, icon: Github },
+  { label: 'LinkedIn', href: profile.linkedin, icon: Linkedin },
+  { label: 'Email', href: `mailto:${profile.email}`, icon: Mail },
+];
 
 export function Hero() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
-    idleCallback(() => setMounted(true));
-    return () => setMounted(false);
-  }, []);
+  const reduceMotion = useReducedMotion();
 
   return (
-    <LazyMotion features={domAnimation}>
-      <section className="relative w-full min-h-screen">
-        {/* Cover Image / Background */}
-        <div className="absolute inset-0 h-[40vh] bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
-          {mounted && <BackgroundAnimations />}
-        </div>
+    <section className="relative w-full min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-white dark:to-slate-950">
+      <div className="absolute inset-x-0 top-0 h-[42vh] bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.35),transparent_34%),radial-gradient(circle_at_top_right,rgba(14,165,233,0.22),transparent_30%)]" />
 
-        {/* Profile Content */}
-        <div className="relative pt-[25vh]">
-          <div className="container mx-auto px-4">
-            <m.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 dark:border-slate-700/30"
-            >
-              {/* Profile Header */}
-              <div className="px-6 pt-20 pb-6 md:px-8 relative">
-                {/* Profile Picture */}
-                <div className="absolute -top-16 left-1/2 -translate-x-1/2 md:left-8 md:translate-x-0">
-                  <m.div
-                    whileHover={{ scale: 1.05 }}
-                    className="relative w-32 h-32 md:w-40 md:h-40"
-                  >
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 p-1">
-                      <div className="rounded-full overflow-hidden">
-                        <Image
-                          alt="Ziad Mostafa"
-                          className="rounded-full object-cover p-1"
-                          src="/file.png"
-                          fill
-                          sizes="(max-width: 768px) 8rem, 10rem"
-                          priority
-                          quality={90}
-                          onError={() => {
-                            const img = document.querySelector(
-                              'img[alt="Ziad Mostafa"]',
-                            ) as HTMLImageElement;
-                            if (img) {
-                              img.src = '/placeholder.svg';
-                            }
-                          }}
-                        />
-                      </div>
-                    </div>
-                    {/* Online Status Indicator */}
-                    <span className="absolute bottom-2 right-2 w-4 h-4 bg-green-500 rounded-full ring-2 ring-white dark:ring-slate-900" />
-                  </m.div>
-                </div>
-
-                {/* Profile Info */}
-                <div className="md:ml-44">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div className="text-center md:text-left">
-                      <m.h1
-                        className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        Ziad Mostafa
-                      </m.h1>
-                      <m.p
-                        className="text-slate-600 dark:text-slate-400 mt-1"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                      >
-                        Front-End Developer
-                      </m.p>
-                      <m.div
-                        className="flex items-center justify-center md:justify-start gap-2 mt-2 text-sm text-slate-500 dark:text-slate-400"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                      >
-                        {mounted && <DynamicIcons.MapPin className="w-4 h-4" />}
-                        <span>Egypt</span>
-                      </m.div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <m.div
-                      className="flex flex-wrap justify-center md:justify-end gap-3"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      <Button
-                        asChild
-                        size="lg"
-                        className="shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-500/10 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-                      >
-                        <Link href="#contact">
-                          {mounted && <DynamicIcons.Send className="mr-2 h-4 w-4" />}
-                          Contact Me
-                        </Link>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        asChild
-                        className="shadow-lg hover:shadow-lg hover:shadow-indigo-500/10 dark:border-indigo-800/50 hover:border-indigo-500 dark:hover:border-indigo-600"
-                      >
-                        <a href="/Ziad-Mostafa-Front-End-Developer.pdf" target="_blank" download>
-                          {mounted && <DynamicIcons.Download className="mr-2 h-4 w-4" />}
-                          Download CV
-                        </a>
-                      </Button>
-                    </m.div>
-                  </div>
-
-                  {/* Stats Section */}
-                  <m.div
-                    className="grid grid-cols-3 gap-4 mt-6 py-4 border-t border-b border-slate-200 dark:border-slate-800"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                  >
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">15+</div>
-                      <div className="text-sm text-slate-600 dark:text-slate-400">Projects</div>
-                    </div>
-                    <div className="text-center border-x border-slate-200 dark:border-slate-800">
-                      <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                        2+
-                      </div>
-                      <div className="text-sm text-slate-600 dark:text-slate-400">Years</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                        20+
-                      </div>
-                      <div className="text-sm text-slate-600 dark:text-slate-400">Skills</div>
-                    </div>
-                  </m.div>
-
-                  {/* Social Links */}
-                  <m.div
-                    className="flex justify-center md:justify-start gap-3 mt-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.7 }}
-                  >
-                    <m.a
-                      href="https://github.com/ziadmustafa1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="group relative p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all duration-300"
-                    >
-                      {mounted && (
-                        <>
-                          <DynamicIcons.Github className="h-5 w-5 text-slate-700 dark:text-slate-300" />
-                          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs">
-                            GitHub
-                          </span>
-                        </>
-                      )}
-                    </m.a>
-                    <m.a
-                      href="https://www.linkedin.com/in/ziad-mostafa-2a4315179"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="group relative p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all duration-300"
-                    >
-                      {mounted && (
-                        <>
-                          <DynamicIcons.Linkedin className="h-5 w-5 text-slate-700 dark:text-slate-300" />
-                          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs">
-                            LinkedIn
-                          </span>
-                        </>
-                      )}
-                    </m.a>
-                    <m.a
-                      href="mailto:ziadmostafadev@gmail.com"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="group relative p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all duration-300"
-                    >
-                      {mounted && (
-                        <>
-                          <DynamicIcons.Mail className="h-5 w-5 text-slate-700 dark:text-slate-300" />
-                          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs">
-                            Email
-                          </span>
-                        </>
-                      )}
-                    </m.a>
-                  </m.div>
-                </div>
+      <div className="relative container mx-auto px-4 pt-28 pb-16 sm:pt-32 md:pt-40">
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-6xl rounded-lg border border-white/15 bg-white/95 p-5 shadow-2xl backdrop-blur dark:border-slate-700/70 dark:bg-slate-900/95 sm:p-8"
+        >
+          <div className="grid gap-8 md:grid-cols-[180px_1fr] md:items-start">
+            <div className="mx-auto md:mx-0">
+              <div className="relative size-36 overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-lg dark:border-slate-700 dark:bg-slate-800 sm:size-40">
+                <Image
+                  alt="Ziad Mostafa"
+                  src="/file.png"
+                  fill
+                  sizes="(max-width: 768px) 144px, 160px"
+                  priority
+                  className="object-cover"
+                />
               </div>
-            </m.div>
+            </div>
+
+            <div className="space-y-6 text-center md:text-left">
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                  <span className="inline-flex items-center gap-2 rounded-md border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700 dark:border-blue-900/70 dark:bg-blue-950/40 dark:text-blue-300">
+                    <Briefcase className="size-4" />
+                    {profile.experience}
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                    <MapPin className="size-4" />
+                    {profile.location}
+                  </span>
+                </div>
+
+                <div>
+                  <h1 className="text-4xl font-bold tracking-normal text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">
+                    {profile.name}
+                  </h1>
+                  <p className="mt-3 text-xl font-semibold text-blue-700 dark:text-blue-300 sm:text-2xl">
+                    {profile.role}
+                  </p>
+                </div>
+
+                <p className="mx-auto max-w-3xl text-base leading-8 text-slate-700 dark:text-slate-300 md:mx-0 sm:text-lg">
+                  {profile.heroSubtitle}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-3 md:justify-start">
+                <Button asChild size="lg" className="bg-blue-700 text-white hover:bg-blue-800">
+                  <Link href="#projects">View Projects</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <a href={profile.cvPath} download>
+                    <Download className="size-4" />
+                    Download CV
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer">
+                    <MessageSquare className="size-4" />
+                    Contact on WhatsApp
+                  </a>
+                </Button>
+              </div>
+
+              <div className="grid gap-3 border-y border-slate-200 py-5 dark:border-slate-800 sm:grid-cols-3">
+                {heroStats.map((stat) => (
+                  <div key={stat.label}>
+                    <div className="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">
+                      {stat.label}
+                    </div>
+                    <div className="mt-1 font-semibold text-slate-950 dark:text-white">
+                      {stat.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-3 md:justify-start">
+                {socialLinks.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target={item.href.startsWith('http') ? '_blank' : undefined}
+                      rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-300 hover:text-blue-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-700 dark:hover:text-blue-300"
+                    >
+                      <Icon className="size-4" />
+                      {item.label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </LazyMotion>
+        </motion.div>
+      </div>
+    </section>
   );
 }
