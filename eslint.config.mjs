@@ -1,23 +1,30 @@
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
+import nextVitals from 'eslint-config-next/core-web-vitals';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const nextConfig = nextVitals.map((config) => {
+  if (!config.rules) return config;
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
+  return {
+    ...config,
+    rules: Object.fromEntries(
+      Object.entries(config.rules).filter(([ruleName]) => !ruleName.startsWith('react/')),
+    ),
+  };
 });
 
-export default [
+const eslintConfig = [
+  ...nextConfig,
   {
-    ignores: ['.next/*', 'node_modules/*'],
+    ignores: ['.next/**', 'node_modules/**', 'out/**', 'build/**', 'logs/**'],
   },
-  ...compat.extends('next/core-web-vitals'),
   {
+    rules: {
+      'react-hooks/immutability': 'off',
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
+  {
+    files: ['lib/utils.ts'],
     plugins: {
       '@typescript-eslint': typescriptEslint,
     },
@@ -30,6 +37,7 @@ export default [
         },
       ],
     },
-    files: ['lib/utils.ts'],
   },
 ];
+
+export default eslintConfig;

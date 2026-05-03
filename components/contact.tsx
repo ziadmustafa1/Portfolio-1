@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { ExternalLink, Github, Linkedin, Mail, MessageSquare, Send } from 'lucide-react';
+import { ExternalLink, GitBranch, Link, Mail, MessageSquare, Send } from 'lucide-react';
 import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -47,13 +47,13 @@ export function Contact() {
         title: 'LinkedIn',
         value: profile.linkedin,
         link: profile.linkedin,
-        icon: Linkedin,
+        icon: Link,
       },
       {
         title: 'GitHub',
         value: profile.github,
         link: profile.github,
-        icon: Github,
+        icon: GitBranch,
       },
     ],
     [],

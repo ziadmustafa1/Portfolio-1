@@ -30,8 +30,7 @@ export default function Home() {
       <footer className="w-full py-8 text-center text-sm text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
         <div className="container">
           <p>
-            © {new Date().getFullYear()} Ziad Mostafa. Built with Next.js, TypeScript, Tailwind
-            CSS.
+            © {new Date().getFullYear()} Ziad Mostafa. Built with Next.js, TypeScript, Tailwind CSS.
           </p>
         </div>
       </footer>

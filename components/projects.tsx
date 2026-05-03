@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { ExternalLink, Github, LockKeyhole } from 'lucide-react';
+import { ExternalLink, GitBranch, LockKeyhole } from 'lucide-react';
 import { useRef } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -104,7 +104,7 @@ export function Projects() {
                         <Button key={link.href} asChild variant="outline" size="sm">
                           <a href={link.href} target="_blank" rel="noopener noreferrer">
                             {link.label === 'GitHub' ? (
-                              <Github className="size-4" />
+                              <GitBranch className="size-4" />
                             ) : (
                               <ExternalLink className="size-4" />
                             )}

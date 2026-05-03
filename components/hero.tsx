@@ -3,7 +3,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Download, Github, Linkedin, Mail, MapPin, MessageSquare, Briefcase } from 'lucide-react';
+import {
+  Briefcase,
+  Download,
+  GitBranch,
+  Link as LinkIcon,
+  Mail,
+  MapPin,
+  MessageSquare,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { profile } from '@/data/profile';
 
@@ -14,8 +22,8 @@ const heroStats = [
 ];
 
 const socialLinks = [
-  { label: 'GitHub', href: profile.github, icon: Github },
-  { label: 'LinkedIn', href: profile.linkedin, icon: Linkedin },
+  { label: 'GitHub', href: profile.github, icon: GitBranch },
+  { label: 'LinkedIn', href: profile.linkedin, icon: LinkIcon },
   { label: 'Email', href: `mailto:${profile.email}`, icon: Mail },
 ];
 
