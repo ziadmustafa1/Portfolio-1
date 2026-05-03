@@ -16,7 +16,10 @@ import { profile } from '@/data/profile';
 const schema = yup.object({
   name: yup.string().required('Name is required'),
   email: yup.string().email('Use a valid email address').required('Email is required'),
-  message: yup.string().required('Message is required').min(10, 'Message must be at least 10 characters'),
+  message: yup
+    .string()
+    .required('Message is required')
+    .min(10, 'Message must be at least 10 characters'),
 });
 
 type FormData = yup.InferType<typeof schema>;
@@ -66,9 +69,7 @@ export function Contact() {
 
   const onSubmit = (data: FormData) => {
     const subject = encodeURIComponent(`Portfolio contact from ${data.name}`);
-    const body = encodeURIComponent(
-      `Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`,
-    );
+    const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`);
     window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
   };
 

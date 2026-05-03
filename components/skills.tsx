@@ -15,7 +15,11 @@ export function Skills() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="skills" ref={sectionRef} className="w-full bg-white py-20 dark:bg-slate-950 md:py-28">
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="w-full bg-white py-20 dark:bg-slate-950 md:py-28"
+    >
       <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-6xl">
           <motion.div

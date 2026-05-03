@@ -44,12 +44,13 @@ export function About() {
           </div>
 
           <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
-            <h3 className="text-lg font-semibold text-slate-950 dark:text-white">
-              Working Focus
-            </h3>
+            <h3 className="text-lg font-semibold text-slate-950 dark:text-white">Working Focus</h3>
             <div className="mt-5 space-y-3">
               {focusItems.map((item) => (
-                <div key={item} className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                <div
+                  key={item}
+                  className="flex items-center gap-3 text-slate-700 dark:text-slate-300"
+                >
                   <CheckCircle2 className="size-5 text-blue-700 dark:text-blue-300" />
                   <span>{item}</span>
                 </div>
