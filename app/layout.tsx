@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Header } from '@/components/header';
 import Script from 'next/script';
 import { baseUrl, defaultMetadata, structuredData } from './seo-config';
 
@@ -43,14 +42,13 @@ export default function RootLayout({
         <link rel="alternate" href={baseUrl} hrefLang="ar" />
         <link rel="alternate" href={baseUrl} hrefLang="x-default" />
       </head>
-      <body className="min-h-screen font-sans antialiased bg-white dark:bg-slate-950">
+      <body className="min-h-screen bg-[#090a0c] font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
           <main>{children}</main>
         </ThemeProvider>
 
