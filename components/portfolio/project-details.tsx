@@ -1,13 +1,27 @@
-import Image from 'next/image';
 import { ArrowLeft, ExternalLink, GitBranch } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { FeatureTechMap } from '@/components/portfolio/feature-tech-map';
+import { ProjectVisual } from '@/components/portfolio/project-visual';
 import type { Project } from '@/src/types/portfolio';
 
 type ProjectDetailsProps = {
   project: Project;
   onBack?: () => void;
+};
+
+const statusLabels: Record<Project['status'], string> = {
+  live: 'Live',
+  'case-study': 'Case study',
+  'in-progress': 'In progress',
+  archived: 'Archived',
+};
+
+const typeLabels: Record<Project['type'], string> = {
+  client: 'Client',
+  personal: 'Personal',
+  'open-source': 'Open source',
+  product: 'Product',
 };
 
 function DetailList({ title, items }: { title: string; items?: string[] }) {
@@ -35,10 +49,10 @@ export function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
         <div>
           <div className="flex flex-wrap gap-2">
             <Badge className="border-emerald-300/25 bg-emerald-300/10 text-emerald-200">
-              {project.status}
+              {statusLabels[project.status]}
             </Badge>
             <Badge className="border-amber-300/25 bg-amber-300/10 text-amber-200">
-              {project.type}
+              {typeLabels[project.type]}
             </Badge>
             <Badge variant="outline" className="border-white/10 bg-white/[0.03] text-zinc-300">
               {project.category}
@@ -64,13 +78,7 @@ export function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-white/10 bg-zinc-950">
-          <Image
-            src={project.thumbnail}
-            alt={`${project.title} case study hero`}
-            fill
-            sizes="(max-width: 1024px) 100vw, 65vw"
-            className="object-cover"
-          />
+          <ProjectVisual project={project} />
         </div>
 
         <div className="space-y-5">
@@ -168,20 +176,26 @@ export function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
       </div>
 
       <section className="mt-8">
-        <h3 className="text-lg font-semibold text-white">Screenshots</h3>
+        <h3 className="text-lg font-semibold text-white">Build snapshots</h3>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {project.images.map((image, index) => (
+          {project.features.map((feature) => (
             <div
-              key={`${project.id}-image-${image}`}
-              className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 bg-zinc-950"
+              key={`${project.id}-snapshot-${feature.id}`}
+              className="rounded-lg border border-white/10 bg-white/[0.03] p-4"
             >
-              <Image
-                src={image}
-                alt={`${project.title} screenshot ${index + 1}`}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover"
-              />
+              <h4 className="font-semibold text-white">{feature.title}</h4>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">{feature.businessValue}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {feature.technologies.slice(0, 4).map((technology) => (
+                  <Badge
+                    key={`${feature.id}-snapshot-${technology}`}
+                    variant="outline"
+                    className="border-white/10 bg-[#0c0d10] text-zinc-300"
+                  >
+                    {technology}
+                  </Badge>
+                ))}
+              </div>
             </div>
           ))}
         </div>

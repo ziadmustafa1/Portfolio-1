@@ -36,8 +36,6 @@ export type Project = {
   category: string;
   shortDescription: string;
   fullDescription: string;
-  thumbnail: string;
-  images: string[];
   status: 'live' | 'case-study' | 'in-progress' | 'archived';
   type: 'client' | 'personal' | 'open-source' | 'product';
   role: string;

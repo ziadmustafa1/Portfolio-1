@@ -37,9 +37,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Add hreflang tags for language/region targeting */}
         <link rel="alternate" href={baseUrl} hrefLang="en" />
-        <link rel="alternate" href={baseUrl} hrefLang="ar" />
         <link rel="alternate" href={baseUrl} hrefLang="x-default" />
       </head>
       <body className="min-h-screen bg-[#090a0c] font-sans antialiased">

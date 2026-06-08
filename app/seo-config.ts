@@ -1,23 +1,28 @@
 import type { Metadata } from 'next';
-import { profile } from '@/data/profile';
+import { profile } from '@/src/data/profile';
 
-export const baseUrl = profile.portfolio;
+export const baseUrl = 'https://ziad-frontend.vercel.app';
 
+const title = 'Ziad Mostafa - Full-Stack / Frontend Developer Portfolio';
 const description =
-  'Freelance Full-Stack Software Engineer from Egypt building Next.js, React, TypeScript, NestJS, Prisma, PostgreSQL, SaaS dashboards, admin systems, marketplaces, and developer tools.';
+  'Developer portfolio focused on Next.js, TypeScript, React, SaaS dashboards, e-commerce systems, admin panels, booking tools, and product interfaces.';
 
-const sameAs = [profile.github, profile.linkedin];
+const sameAs = ['https://github.com/ziadmustafa1'];
 
 const knowsAbout = [
+  'Frontend Development',
   'Full-Stack Development',
   'Next.js',
   'React',
   'TypeScript',
+  'Tailwind CSS',
   'NestJS',
   'Prisma',
   'PostgreSQL',
   'SaaS Dashboards',
-  'Admin Systems',
+  'E-commerce Systems',
+  'Admin Panels',
+  'Booking Systems',
   'Developer Tools',
 ];
 
@@ -28,14 +33,14 @@ const personSchema = {
   name: profile.name,
   givenName: 'Ziad',
   familyName: 'Mostafa',
-  alternateName: 'زياد مصطفى',
+  alternateName: 'Ziad Mostafa',
   description,
-  jobTitle: profile.role,
+  jobTitle: profile.title,
   url: baseUrl,
   email: profile.email,
   telephone: profile.phone,
   sameAs,
-  image: `${baseUrl}/image.png`,
+  image: `${baseUrl}${profile.avatar}`,
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'Egypt',
@@ -44,7 +49,7 @@ const personSchema = {
     '@type': 'Organization',
     name: 'Freelance',
   },
-  knowsLanguage: ['Arabic', 'English Basic'],
+  knowsLanguage: ['Arabic', 'English'],
   knowsAbout,
 };
 
@@ -53,7 +58,7 @@ const websiteSchema = {
   '@type': 'WebSite',
   '@id': `${baseUrl}/#website`,
   url: baseUrl,
-  name: 'Ziad Mostafa | Freelance Full-Stack Software Engineer',
+  name: title,
   description,
   publisher: {
     '@id': `${baseUrl}/#person`,
@@ -64,26 +69,27 @@ export const structuredData = [personSchema, websiteSchema];
 
 const keywords = [
   'Ziad Mostafa',
-  'Freelance Full-Stack Software Engineer',
-  'Full-Stack Developer Egypt',
+  'Full-Stack Developer Portfolio',
+  'Frontend Developer Portfolio',
   'Next.js Developer',
   'React Developer',
   'TypeScript Developer',
+  'Tailwind CSS Developer',
   'NestJS Developer',
   'Prisma Developer',
   'PostgreSQL Developer',
   'SaaS Dashboard Developer',
-  'Admin Systems Developer',
+  'E-commerce Developer',
+  'Admin Panel Developer',
+  'Booking System Developer',
   'Developer Tools',
-  'مطور ويب مصر',
-  'مبرمج فول ستاك',
-  'زياد مصطفى',
+  'Freelance Web Developer Egypt',
 ];
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Ziad Mostafa | Freelance Full-Stack Software Engineer',
+    default: title,
     template: '%s | Ziad Mostafa',
   },
   description,
@@ -113,25 +119,24 @@ export const defaultMetadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    alternateLocale: 'ar_EG',
     url: baseUrl,
-    title: 'Ziad Mostafa | Freelance Full-Stack Software Engineer',
+    title,
     description,
     siteName: 'Ziad Mostafa Portfolio',
     images: [
       {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Ziad Mostafa - Freelance Full-Stack Software Engineer',
+        url: profile.avatar,
+        width: 1536,
+        height: 2048,
+        alt: 'Ziad Mostafa profile photo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ziad Mostafa | Freelance Full-Stack Software Engineer',
+    title,
     description,
-    images: ['/og-image.png'],
+    images: [profile.avatar],
   },
   manifest: '/site.webmanifest',
   appleWebApp: {

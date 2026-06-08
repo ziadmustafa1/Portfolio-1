@@ -1,3 +1,4 @@
+import type { KeyboardEvent } from 'react';
 import type { PortfolioTabId } from '@/src/types/portfolio';
 
 export const profileTabs: Array<{ id: PortfolioTabId; label: string; legacyId: string }> = [
@@ -17,13 +18,42 @@ type ProfileTabsProps = {
 };
 
 export function ProfileTabs({ activeTab, onChange }: ProfileTabsProps) {
+  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const keyToOffset: Partial<Record<string, number>> = {
+      ArrowRight: 1,
+      ArrowDown: 1,
+      ArrowLeft: -1,
+      ArrowUp: -1,
+    };
+
+    const offset = keyToOffset[event.key];
+    let nextIndex = index;
+
+    if (typeof offset === 'number') {
+      event.preventDefault();
+      nextIndex = (index + offset + profileTabs.length) % profileTabs.length;
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      nextIndex = 0;
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      nextIndex = profileTabs.length - 1;
+    } else {
+      return;
+    }
+
+    const nextTab = profileTabs[nextIndex];
+    onChange(nextTab.id);
+    window.requestAnimationFrame(() => document.getElementById(`tab-${nextTab.id}`)?.focus());
+  };
+
   return (
     <nav
       aria-label="Portfolio profile tabs"
       className="sticky top-0 z-30 -mx-4 border-y border-white/10 bg-[#090a0c]/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-lg sm:border sm:bg-[#111216]/95"
     >
       <div className="flex gap-2 overflow-x-auto pb-1" role="tablist" aria-orientation="horizontal">
-        {profileTabs.map((tab) => {
+        {profileTabs.map((tab, index) => {
           const isActive = tab.id === activeTab;
 
           return (
@@ -34,7 +64,9 @@ export function ProfileTabs({ activeTab, onChange }: ProfileTabsProps) {
               role="tab"
               aria-selected={isActive}
               aria-controls={`panel-${tab.id}`}
+              tabIndex={isActive ? 0 : -1}
               onClick={() => onChange(tab.id)}
+              onKeyDown={(event) => handleKeyDown(event, index)}
               className={`h-10 shrink-0 rounded-md px-4 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70 ${
                 isActive
                   ? 'bg-emerald-300 text-zinc-950'

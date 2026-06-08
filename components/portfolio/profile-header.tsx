@@ -24,7 +24,6 @@ export function ProfileHeader({ profile, socialLinks, onNavigate }: ProfileHeade
               src={profile.avatar}
               alt={`${profile.name} profile avatar`}
               fill
-              priority
               sizes="(max-width: 768px) 96px, 160px"
               className="object-cover"
             />

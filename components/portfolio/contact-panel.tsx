@@ -69,10 +69,16 @@ export function ContactPanel({ profile, socialLinks }: ContactPanelProps) {
               id="contact-name"
               {...register('name')}
               autoComplete="name"
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? 'contact-name-error' : undefined}
               className="h-11 border-white/10 bg-[#0c0d10] text-zinc-100 placeholder:text-zinc-600"
               placeholder="Your name"
             />
-            {errors.name ? <p className="text-sm text-red-300">{errors.name.message}</p> : null}
+            {errors.name ? (
+              <p id="contact-name-error" className="text-sm text-red-300">
+                {errors.name.message}
+              </p>
+            ) : null}
           </div>
 
           <div className="space-y-2">
@@ -84,10 +90,16 @@ export function ContactPanel({ profile, socialLinks }: ContactPanelProps) {
               {...register('email')}
               type="email"
               autoComplete="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? 'contact-email-error' : undefined}
               className="h-11 border-white/10 bg-[#0c0d10] text-zinc-100 placeholder:text-zinc-600"
               placeholder="you@example.com"
             />
-            {errors.email ? <p className="text-sm text-red-300">{errors.email.message}</p> : null}
+            {errors.email ? (
+              <p id="contact-email-error" className="text-sm text-red-300">
+                {errors.email.message}
+              </p>
+            ) : null}
           </div>
 
           <div className="space-y-2">
@@ -97,11 +109,15 @@ export function ContactPanel({ profile, socialLinks }: ContactPanelProps) {
             <Textarea
               id="contact-message"
               {...register('message')}
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? 'contact-message-error' : undefined}
               className="min-h-36 border-white/10 bg-[#0c0d10] text-zinc-100 placeholder:text-zinc-600"
               placeholder="Tell me what you want to build or discuss."
             />
             {errors.message ? (
-              <p className="text-sm text-red-300">{errors.message.message}</p>
+              <p id="contact-message-error" className="text-sm text-red-300">
+                {errors.message.message}
+              </p>
             ) : null}
           </div>
 

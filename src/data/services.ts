@@ -5,7 +5,7 @@ export const services: Service[] = [
     id: 'saas-dashboards',
     title: 'SaaS Dashboards',
     description:
-      'Role-aware product dashboards with account flows, data fetching, charts, billing-ready surfaces, and deployment-aware architecture.',
+      'Focused dashboard interfaces for products that need clear navigation, data views, forms, settings, and role-aware screens.',
     deliverables: [
       'Dashboard IA',
       'Auth flows',
@@ -14,14 +14,14 @@ export const services: Service[] = [
       'Settings',
       'API integration',
     ],
-    relatedProjects: ['aetheris-ai', 'falak-legal', 'time-slot-manager'],
+    relatedProjects: ['legal-operations-dashboard', 'hr-company-dashboard', 'time-slot-manager'],
     relatedTechnologies: ['Next.js App Router', 'React', 'TanStack Query', 'HeroUI', 'NestJS'],
   },
   {
     id: 'admin-panels',
     title: 'Admin Panels',
     description:
-      'Operational panels for teams that need CRUD, permissions, auditability, exports, and clear day-to-day workflows.',
+      'Operational panels for teams that need searchable records, protected actions, forms, filters, and practical day-to-day workflows.',
     deliverables: [
       'CRUD modules',
       'RBAC',
@@ -30,7 +30,7 @@ export const services: Service[] = [
       'Exports',
       'Responsive UI',
     ],
-    relatedProjects: ['falak-legal', 'hikaya-stories', 'time-slot-manager'],
+    relatedProjects: ['hr-company-dashboard', 'legal-operations-dashboard', 'ecommerce-systems'],
     relatedTechnologies: ['Prisma', 'PostgreSQL', 'React Hook Form', 'Zod', 'JWT'],
   },
   {
@@ -52,7 +52,7 @@ export const services: Service[] = [
     id: 'internal-tools',
     title: 'Internal Tools',
     description:
-      'Focused software for teams that need faster internal operations, protected data, dashboards, and workflow automation.',
+      'Internal tools for employee workflows, legal/admin records, protected data, dashboards, uploads, and status tracking.',
     deliverables: [
       'Workflow mapping',
       'Protected routes',
@@ -61,14 +61,14 @@ export const services: Service[] = [
       'Notifications',
       'Reports',
     ],
-    relatedProjects: ['falak-legal', 'hikaya-stories'],
+    relatedProjects: ['hr-company-dashboard', 'legal-operations-dashboard'],
     relatedTechnologies: ['NestJS', 'BullMQ', 'Redis', 'S3-compatible storage', 'WebSockets'],
   },
   {
     id: 'api-driven-apps',
     title: 'API-Driven Apps',
     description:
-      'Frontend products backed by clean service APIs, validation layers, typed contracts, and production deployment habits.',
+      'Frontend products backed by service APIs, validation layers, typed contracts, and deployable project structure.',
     deliverables: [
       'API contracts',
       'Service modules',
@@ -76,14 +76,14 @@ export const services: Service[] = [
       'Typed clients',
       'Deployment workflow',
     ],
-    relatedProjects: ['wexts', 'aetheris-ai', 'countries-cities-ar'],
+    relatedProjects: ['wexts', 'ecommerce-systems', 'countries-cities-ar'],
     relatedTechnologies: ['NestJS', 'Fastify', 'TypeScript', 'CLI codegen', 'OpenAPI-style docs'],
   },
   {
     id: 'mvp-builds',
     title: 'MVP Builds',
     description:
-      'Practical first versions that show the product shape, core workflows, technical depth, and a path to production.',
+      'Practical first versions that show the product shape, core workflow, data model, and next steps without pretending to be a finished enterprise product.',
     deliverables: [
       'Product scope',
       'Clickable product UI',
@@ -92,7 +92,7 @@ export const services: Service[] = [
       'Database schema',
       'Launch checklist',
     ],
-    relatedProjects: ['aetheris-ai', 'time-slot-manager', 'hikaya-stories'],
+    relatedProjects: ['ecommerce-systems', 'time-slot-manager', 'hr-company-dashboard'],
     relatedTechnologies: ['Next.js', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Vercel'],
   },
 ];

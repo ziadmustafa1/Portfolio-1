@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { BookOpen, ExternalLink, GitBranch, Layers } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { ProjectVisual } from '@/components/portfolio/project-visual';
 import type { Project } from '@/src/types/portfolio';
 
 const statusLabels: Record<Project['status'], string> = {
@@ -22,13 +22,7 @@ export function ProjectCard({ project, onOpen }: ProjectCardProps) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-[#111216]">
       <div className="relative aspect-[16/10] overflow-hidden bg-zinc-950">
-        <Image
-          src={project.thumbnail}
-          alt={`${project.title} product preview`}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover opacity-90 transition duration-300 group-hover:scale-[1.02]"
-        />
+        <ProjectVisual project={project} compact />
         <div className="absolute inset-0 bg-gradient-to-t from-[#090a0c]/85 via-transparent to-transparent" />
         <div className="absolute left-3 top-3 flex flex-wrap gap-2">
           <Badge className="border-white/15 bg-zinc-950/80 text-zinc-100 backdrop-blur">
