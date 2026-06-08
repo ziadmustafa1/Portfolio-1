@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useSafeReducedMotion } from '@/lib/use-safe-reduced-motion';
 import { ExternalLink, GitBranch, LockKeyhole } from 'lucide-react';
 import { useRef } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -11,7 +12,7 @@ import { moreProjects, projects } from '@/data/projects';
 export function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useSafeReducedMotion();
 
   return (
     <section

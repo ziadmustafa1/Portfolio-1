@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useSafeReducedMotion } from '@/lib/use-safe-reduced-motion';
 import { CheckCircle2 } from 'lucide-react';
 import { useRef } from 'react';
 import { profile } from '@/data/profile';
@@ -16,7 +17,7 @@ const focusItems = [
 export function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useSafeReducedMotion();
 
   return (
     <section

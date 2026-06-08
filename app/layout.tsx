@@ -37,8 +37,6 @@ export default function RootLayout({
     >
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Preload critical assets */}
-        <link rel="preload" as="image" href="/image.png" />
 
         {/* Add hreflang tags for language/region targeting */}
         <link rel="alternate" href={baseUrl} hrefLang="en" />

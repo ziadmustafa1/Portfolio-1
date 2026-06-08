@@ -4,7 +4,8 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useSafeReducedMotion } from '@/lib/use-safe-reduced-motion';
 import { ExternalLink, GitBranch, Link, Mail, MessageSquare, Send } from 'lucide-react';
 import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
@@ -27,7 +28,7 @@ type FormData = yup.InferType<typeof schema>;
 export function Contact() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useSafeReducedMotion();
 
   const contactItems = useMemo(
     () => [

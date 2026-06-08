@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useSafeReducedMotion } from '@/lib/use-safe-reduced-motion';
 import {
   Briefcase,
   Download,
@@ -28,7 +29,7 @@ const socialLinks = [
 ];
 
 export function Hero() {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useSafeReducedMotion();
 
   return (
     <section className="relative w-full min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-white dark:to-slate-950">

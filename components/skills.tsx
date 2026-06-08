@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useSafeReducedMotion } from '@/lib/use-safe-reduced-motion';
 import { Code2, Database, Server, Ship, ShieldCheck, PanelsTopLeft } from 'lucide-react';
 import { useRef } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -12,7 +13,7 @@ const icons = [Code2, Server, Database, Ship, ShieldCheck, PanelsTopLeft];
 export function Skills() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useSafeReducedMotion();
 
   return (
     <section
