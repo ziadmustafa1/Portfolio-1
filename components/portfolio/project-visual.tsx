@@ -16,7 +16,9 @@ const toneClasses = [
 const icons = [Monitor, Blocks, Database, ShieldCheck];
 
 function getToneIndex(project: Project) {
-  return project.id.split('').reduce((total, char) => total + char.charCodeAt(0), 0) % toneClasses.length;
+  return (
+    project.id.split('').reduce((total, char) => total + char.charCodeAt(0), 0) % toneClasses.length
+  );
 }
 
 export function ProjectVisual({ project, compact = false }: ProjectVisualProps) {

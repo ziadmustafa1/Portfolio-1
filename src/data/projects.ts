@@ -99,7 +99,8 @@ export const projects: Project[] = [
       {
         id: 'storefront-pages',
         title: 'Storefront Pages',
-        description: 'Product listing, product detail, category browsing, and responsive layout states.',
+        description:
+          'Product listing, product detail, category browsing, and responsive layout states.',
         technologies: ['Next.js App Router', 'React', 'Tailwind CSS', 'TypeScript'],
         complexity: 'intermediate',
         businessValue: 'Gives shoppers a clear way to browse and inspect products.',
@@ -251,7 +252,8 @@ export const projects: Project[] = [
       {
         id: 'case-workspace',
         title: 'Case Workspace',
-        description: 'Case records connect clients, hearings, documents, invoices, tasks, and notes.',
+        description:
+          'Case records connect clients, hearings, documents, invoices, tasks, and notes.',
         technologies: ['Next.js App Router', 'HeroUI', 'TanStack Query', 'Prisma', 'PostgreSQL'],
         complexity: 'advanced',
         businessValue: 'Keeps legal records grouped around the work item that matters most.',
@@ -259,7 +261,8 @@ export const projects: Project[] = [
       {
         id: 'permissions-audit',
         title: 'Permissions and Audit Events',
-        description: 'Role-aware access patterns and sensitive-action tracking for admin workflows.',
+        description:
+          'Role-aware access patterns and sensitive-action tracking for admin workflows.',
         technologies: ['JWT', 'RBAC', 'Middleware', 'Audit logs', 'NestJS'],
         complexity: 'advanced',
         businessValue: 'Supports safer handling of sensitive legal data.',
@@ -345,7 +348,8 @@ export const projects: Project[] = [
       {
         id: 'admin-controls',
         title: 'Admin Controls',
-        description: 'Screens for branches, methods, blackout dates, slots, reservations, and settings.',
+        description:
+          'Screens for branches, methods, blackout dates, slots, reservations, and settings.',
         technologies: ['React', 'Tailwind CSS', 'Data tables', 'Protected Routes'],
         complexity: 'advanced',
         businessValue: 'Gives operators a central place to adjust booking availability.',
@@ -406,7 +410,8 @@ export const projects: Project[] = [
       {
         id: 'multilingual-data',
         title: 'Multilingual Location Data',
-        description: 'Country and state/province entries prepared for Arabic, English, and French usage.',
+        description:
+          'Country and state/province entries prepared for Arabic, English, and French usage.',
         technologies: ['TypeScript', 'Data modeling', 'Package exports'],
         complexity: 'intermediate',
         businessValue: 'Speeds up building location fields in multilingual products.',
@@ -414,7 +419,8 @@ export const projects: Project[] = [
       {
         id: 'library-builds',
         title: 'Library Build Outputs',
-        description: 'ESM/CJS-compatible outputs, generated type declarations, and package exports.',
+        description:
+          'ESM/CJS-compatible outputs, generated type declarations, and package exports.',
         technologies: ['tsup', 'ESM/CJS builds', 'Type declarations', 'npm package exports'],
         complexity: 'intermediate',
         businessValue: 'Makes the package easier to consume across different JavaScript setups.',
