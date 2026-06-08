@@ -1,5 +1,12 @@
 import type { LucideIcon } from 'lucide-react';
-import { ExternalLink, GitBranch, Globe, Link as LinkIcon, Mail, MessageCircle } from 'lucide-react';
+import {
+  ExternalLink,
+  GitBranch,
+  Globe,
+  Link as LinkIcon,
+  Mail,
+  MessageCircle,
+} from 'lucide-react';
 import type { SocialLink } from '@/src/types/portfolio';
 
 const iconMap: Record<SocialLink['id'], LucideIcon> = {

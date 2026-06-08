@@ -29,9 +29,7 @@ type ContactPanelProps = {
 export function ContactPanel({ profile, socialLinks }: ContactPanelProps) {
   const directLinks = useMemo(
     () =>
-      socialLinks.filter((link) =>
-        ['email', 'whatsapp', 'linkedin', 'github'].includes(link.id),
-      ),
+      socialLinks.filter((link) => ['email', 'whatsapp', 'linkedin', 'github'].includes(link.id)),
     [socialLinks],
   );
 
@@ -107,7 +105,10 @@ export function ContactPanel({ profile, socialLinks }: ContactPanelProps) {
             ) : null}
           </div>
 
-          <Button type="submit" className="h-11 w-full bg-emerald-300 text-zinc-950 hover:bg-emerald-200">
+          <Button
+            type="submit"
+            className="h-11 w-full bg-emerald-300 text-zinc-950 hover:bg-emerald-200"
+          >
             <Send className="size-4" />
             Open Email Draft
           </Button>
@@ -130,7 +131,9 @@ export function ContactPanel({ profile, socialLinks }: ContactPanelProps) {
               >
                 <span>
                   <span className="block font-semibold text-white">{link.label}</span>
-                  <span className="mt-1 block break-all text-zinc-500">{link.href.replace('mailto:', '')}</span>
+                  <span className="mt-1 block break-all text-zinc-500">
+                    {link.href.replace('mailto:', '')}
+                  </span>
                 </span>
                 <ExternalLink className="size-4 shrink-0 text-zinc-500" />
               </a>

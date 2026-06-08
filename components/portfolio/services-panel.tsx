@@ -20,10 +20,7 @@ export function ServicesPanel({ services, projects, onOpenProject }: ServicesPan
           .filter((project): project is Project => Boolean(project));
 
         return (
-          <article
-            key={service.id}
-            className="rounded-lg border border-white/10 bg-[#111216] p-5"
-          >
+          <article key={service.id} className="rounded-lg border border-white/10 bg-[#111216] p-5">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <h3 className="text-xl font-semibold text-white">{service.title}</h3>

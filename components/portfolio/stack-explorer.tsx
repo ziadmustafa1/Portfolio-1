@@ -41,8 +41,18 @@ const categories: StackCategory[] = [
   {
     id: 'backend',
     title: 'Backend and APIs',
-    description: 'Service ownership, auth, runtime composition, API contracts, and realtime behavior.',
-    matches: ['NestJS', 'Fastify', 'JWT', 'Auth.js', 'Passport', 'OAuth', 'Socket.IO', 'WebSockets'],
+    description:
+      'Service ownership, auth, runtime composition, API contracts, and realtime behavior.',
+    matches: [
+      'NestJS',
+      'Fastify',
+      'JWT',
+      'Auth.js',
+      'Passport',
+      'OAuth',
+      'Socket.IO',
+      'WebSockets',
+    ],
   },
   {
     id: 'data',
@@ -94,7 +104,10 @@ function addUsage(
   projectTitle: string,
   featureTitle?: string,
 ) {
-  const existing = usage.get(technology) ?? { projects: new Set<string>(), features: new Set<string>() };
+  const existing = usage.get(technology) ?? {
+    projects: new Set<string>(),
+    features: new Set<string>(),
+  };
   existing.projects.add(projectTitle);
   if (featureTitle) existing.features.add(featureTitle);
   usage.set(technology, existing);
@@ -118,7 +131,9 @@ function collectUsage(projects: Project[]): TechnologyUsage[] {
       projects: Array.from(value.projects).sort(),
       features: Array.from(value.features).sort(),
     }))
-    .sort((a, b) => b.projects.length - a.projects.length || a.technology.localeCompare(b.technology));
+    .sort(
+      (a, b) => b.projects.length - a.projects.length || a.technology.localeCompare(b.technology),
+    );
 }
 
 function belongsToCategory(technology: string, category: StackCategory) {
@@ -144,10 +159,7 @@ export function StackExplorer({ projects }: StackExplorerProps) {
         if (technologies.length === 0) return null;
 
         return (
-          <section
-            key={category.id}
-            className="rounded-lg border border-white/10 bg-[#111216] p-5"
-          >
+          <section key={category.id} className="rounded-lg border border-white/10 bg-[#111216] p-5">
             <div className="max-w-3xl">
               <h3 className="text-xl font-semibold text-white">{category.title}</h3>
               <p className="mt-2 text-sm leading-6 text-zinc-400">{category.description}</p>

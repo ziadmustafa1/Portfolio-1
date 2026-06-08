@@ -43,15 +43,7 @@ const tabToHash: Record<PortfolioTabId, string> = {
   contact: 'contact',
 };
 
-function SectionIntro({
-  eyebrow,
-  title,
-  body,
-}: {
-  eyebrow: string;
-  title: string;
-  body?: string;
-}) {
+function SectionIntro({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
   return (
     <div className="max-w-3xl">
       <p className="text-sm font-semibold uppercase tracking-normal text-emerald-300">{eyebrow}</p>
@@ -170,7 +162,11 @@ export function PortfolioShell() {
               title="Product-studio services tied to real project evidence."
               body="Services are mapped to related projects and technologies so the offer stays grounded in shipped work."
             />
-            <ServicesPanel services={services} projects={projects} onOpenProject={handleOpenProject} />
+            <ServicesPanel
+              services={services}
+              projects={projects}
+              onOpenProject={handleOpenProject}
+            />
           </div>
         );
       case 'stack':

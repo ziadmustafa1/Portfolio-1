@@ -14,7 +14,9 @@ export function ProfileStats({ stats }: ProfileStatsProps) {
         >
           <div className="text-2xl font-semibold tracking-normal text-white">{stat.value}</div>
           <div className="mt-1 text-sm font-medium text-zinc-300">{stat.label}</div>
-          {stat.detail ? <div className="mt-2 text-xs leading-5 text-zinc-500">{stat.detail}</div> : null}
+          {stat.detail ? (
+            <div className="mt-2 text-xs leading-5 text-zinc-500">{stat.detail}</div>
+          ) : null}
         </div>
       ))}
     </section>

@@ -108,7 +108,8 @@ export const projects: Project[] = [
           'Case records connect clients, hearings, tasks, documents, invoices, and internal activity.',
         technologies: ['Next.js App Router', 'HeroUI', 'TanStack Query', 'Prisma', 'PostgreSQL'],
         complexity: 'advanced',
-        businessValue: 'Keeps legal operations organized around the case instead of scattered files.',
+        businessValue:
+          'Keeps legal operations organized around the case instead of scattered files.',
       },
       {
         id: 'rbac-audit',
@@ -121,10 +122,12 @@ export const projects: Project[] = [
       {
         id: 'client-portal',
         title: 'Client Portal',
-        description: 'Client-facing access for selected records, updates, and document interactions.',
+        description:
+          'Client-facing access for selected records, updates, and document interactions.',
         technologies: ['React', 'WebSockets', 'S3-compatible storage', 'next-intl', 'Zustand'],
         complexity: 'advanced',
-        businessValue: 'Gives clients clearer status visibility without exposing internal workflows.',
+        businessValue:
+          'Gives clients clearer status visibility without exposing internal workflows.',
       },
     ],
     techStack: [
@@ -190,7 +193,8 @@ export const projects: Project[] = [
       {
         id: 'slot-templates',
         title: 'Slot Template Engine',
-        description: 'Template rules generate actual reservable slots for different branches and methods.',
+        description:
+          'Template rules generate actual reservable slots for different branches and methods.',
         technologies: ['Prisma', 'PostgreSQL', 'TypeScript', 'Date modeling', 'Validation'],
         complexity: 'advanced',
         businessValue: 'Lets merchants scale scheduling without creating every slot by hand.',
@@ -198,7 +202,8 @@ export const projects: Project[] = [
       {
         id: 'reservation-flow',
         title: 'Reservation Flow',
-        description: 'Public booking widget checks capacity, availability, and selected method rules.',
+        description:
+          'Public booking widget checks capacity, availability, and selected method rules.',
         technologies: ['Next.js App Router', 'React Hook Form', 'Zod', 'TanStack Query'],
         complexity: 'intermediate',
         businessValue: 'Reduces overbooking and gives customers a clearer checkout experience.',
@@ -206,7 +211,8 @@ export const projects: Project[] = [
       {
         id: 'merchant-dashboard',
         title: 'Merchant Dashboard',
-        description: 'Admin screens manage branches, methods, blackout dates, reservations, and settings.',
+        description:
+          'Admin screens manage branches, methods, blackout dates, reservations, and settings.',
         technologies: ['React', 'Tailwind CSS', 'Tables', 'Protected Routes', 'Auth.js'],
         complexity: 'advanced',
         businessValue: 'Keeps operational control in one place for non-technical merchant teams.',
@@ -437,7 +443,8 @@ export const projects: Project[] = [
       {
         id: 'multilingual-data',
         title: 'Multilingual Location Data',
-        description: 'Provides country and state/province names for Arabic, English, and French usage.',
+        description:
+          'Provides country and state/province names for Arabic, English, and French usage.',
         technologies: ['TypeScript', 'Data modeling', 'Package exports'],
         complexity: 'intermediate',
         businessValue: 'Speeds up location forms for Arabic and multilingual products.',
@@ -448,7 +455,8 @@ export const projects: Project[] = [
         description: 'Ships ESM, CJS, generated type declarations, and tested exports.',
         technologies: ['tsup', 'Vitest', 'ESM/CJS builds', 'Type declarations'],
         complexity: 'intermediate',
-        businessValue: 'Makes the package easy to adopt across React, Next.js, Vue, and Node projects.',
+        businessValue:
+          'Makes the package easy to adopt across React, Next.js, Vue, and Node projects.',
       },
       {
         id: 'developer-docs',

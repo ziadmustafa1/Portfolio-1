@@ -24,10 +24,7 @@ export function FeatureTechMap({ features, compact = false }: FeatureTechMapProp
   return (
     <div className={compact ? 'space-y-3' : 'grid gap-4 lg:grid-cols-2'}>
       {features.map((feature) => (
-        <article
-          key={feature.id}
-          className="rounded-lg border border-white/10 bg-white/[0.03] p-4"
-        >
+        <article key={feature.id} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <h4 className="text-base font-semibold text-white">{feature.title}</h4>
